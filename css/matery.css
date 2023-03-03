@@ -1297,8 +1297,8 @@ thead {
 }
 
 .chip-container .chip-active {
-    color: #FFF !important;
-    background: linear-gradient(to bottom right, #FF5E3A 0%, #FF2A68 100%) !important;
+    color: #2ea451!important;
+    /* background: linear-gradient(to bottom right, #FF5E3A 0%, #FF2A68 100%) !important; */
     box-shadow: 2px 5px 10px #aaa !important;
 }
 
@@ -1316,8 +1316,9 @@ thead {
 }
 
 .chip-container .chip:hover {
-    color: #fff;
-    background: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%) !important;
+    color: #2ea451;
+    opacity: .8;
+    /* background: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%) !important; */
 }
 
 .chip .tag-length {
@@ -1327,12 +1328,12 @@ thead {
 }
 
 .chip-default .tag-length {
-    color: #e91e63;
+    color: rgba(66, 92, 118, .8);
     margin-top: 1px;
 }
 
 .chip-active .tag-length {
-    color: #fff;
+    color: #64c45b;
 }
 
 /* archive page. */
@@ -2293,4 +2294,25 @@ body.DarkMode .theme-btn:hover {
     font-family:'Font Awesome 5 Free';
     font-weight: 900;
     color: #d9534f;
+}
+
+/*直达评论按钮样式*/
+.comment-scroll {
+    position: fixed;
+    right: 15px;
+    bottom: 135px;
+    padding-top: 15px;
+    margin-bottom: 0;
+    z-index: 998;
+}
+
+.comment-scroll .btn-floating {
+    background: linear-gradient(to bottom right, #FF9999 0%, #ff6666 100%);
+    width: 48px;
+    height: 48px;
+}
+
+.comment-scroll .btn-floating i {
+    line-height: 48px;
+    font-size: 1.8rem;
 }
