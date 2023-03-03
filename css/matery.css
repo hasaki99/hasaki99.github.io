@@ -241,11 +241,12 @@ mark {
 }
 
 .bg-color {
-    background-image: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);
+    /* background-image: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%); */
+    background-image: linear-gradient(to right, #FF9999 0%, #FF6666 100%);
 }
 
 .text-color {
-    color: #0f9d58 !important;
+    color: #FF6666 !important;
 }
 
 .white-color {
@@ -257,7 +258,7 @@ mark {
     position: fixed;
     bottom: 0;
     z-index: 300;
-    background: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);
+    background: linear-gradient(to right, #FF9999 0%, #FF6666);
     opacity: 0.8;
 }
 
@@ -1394,7 +1395,7 @@ thead {
     left: 18px;
     height: 100%;
     width: 4px;
-    background: #0f9d58;
+    background: #FF6666;
 }
 
 @media only screen and (min-width: 900px) {
@@ -1630,8 +1631,8 @@ thead {
     margin: 0 0.5rem;
     padding: 0;
     color: #fff;
-    border: 1px solid #0f9d58;
-    background: radial-gradient(#4cbf30, #0f9d58);
+    border: 1px solid #FF6666;
+    background: radial-gradient(#FF9999 0%, #FF6666);
     font-size: 0.9rem;
     border-radius: 50%;
     box-shadow: 0 4px 6px rgba(50, 50, 93, .21), 0 2px 3px rgba(0, 0, 0, .1);
@@ -1807,8 +1808,8 @@ thead {
 
 .other-skills .chip:hover {
     color: #fff;
-    background: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);
-    border: 1px solid #4cbf30;
+    background: linear-gradient(to right,#FF9999 0%, #FF6666);
+    border: 1px solid #FF9999;
     box-shadow: 0 5px 5px rgba(0, 0, 0, .25)
 }
 

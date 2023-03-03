@@ -44,14 +44,15 @@
 
 #loading-box .spinner-box .loading-word {
   position: absolute;
-  color: #090000;
+  color: #008fba;
   font-size: 0.9rem;
 }
 
 #loading-box .spinner-box .configure-core {
   width: 100%;
   height: 100%;
-  background-color: #8faff3;
+  /* background-color: #8faff3; */
+  background-color: rgb(245, 180, 191);
 }
 
 div.loaded div.loading-left-bg {
