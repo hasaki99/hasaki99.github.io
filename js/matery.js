@@ -187,3 +187,43 @@ if (localStorage.getItem('isDark') === '1') {
     document.body.classList.remove('DarkMode');
     $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')
 }
+//页面离开时
+// 浏览器搞笑标题
+var OriginTitle = document.title;
+var titleTime;
+document.addEventListener('visibilitychange', function () {
+    if (document.hidden) {
+        $('[rel="icon"]').attr('href', "/funny.ico");
+        document.title = 'ヽ(●-`Д´-)ノ你要走嘛我好伤心！';
+        clearTimeout(titleTime);
+    }
+    else {
+        $('[rel="icon"]').attr('href', "/favicon.ico");
+        document.title = '(Ő∀Ő3)ノ哇喔！欢迎！' + OriginTitle;
+        titleTime = setTimeout(function () {
+            document.title = OriginTitle;
+        }, 2000);
+    }
+});
+// 页脚鱼
+// fish();
+// function fish() {
+//     return (
+//       $("#footer-wrap").css({
+//         position: "absolute",
+//         "text-align": "center",
+//         top: 0,
+//         right: 0,
+//         left: 0,
+//         bottom: 0,
+//         "z-index": 99,
+//       }),
+//       $("footer").append(
+//         '<div class="container" id="jsi-flying-fish-container"></div>'
+//       ),
+//       $("body").append(
+//         '<script src="https://cdn.jsdelivr.net/gh/fudalijunyi/cdn/lovelijunyi/js/fish.js"></script>'
+//       ),
+//       this
+//     );
+//   }
