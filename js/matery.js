@@ -174,7 +174,7 @@ $(function () {
 //黑夜模式提醒开启功能
 setTimeout(function () {
     if ((new Date().getHours() >= 19 || new Date().getHours() < 7) && !$('body').hasClass('DarkMode')) {
-        let toastHTML = '<span style="color:#97b8b2;border-radius: 10px;>' + '<i class="fa fa-bellaria-hidden="true"></i>晚上使用深色模式阅读更好哦。(ﾟ▽ﾟ)</span>'
+        let toastHTML = '<span style="color:#FFC0CB;border-radius: 10px;>' + '<i class="fa fa-bellaria-hidden="true"></i>欧尼酱，晚上使用深色模式阅读更好哦。(ﾟ▽ﾟ)</span>'
         M.toast({ html: toastHTML })
     }
 }, 2200);
@@ -193,12 +193,12 @@ var OriginTitle = document.title;
 var titleTime;
 document.addEventListener('visibilitychange', function () {
     if (document.hidden) {
-        $('[rel="icon"]').attr('href', "/funny.ico");
+        $('[rel="icon"]').attr('href', "../medias/nahida.png");
         document.title = 'ヽ(●-`Д´-)ノ你要走嘛我好伤心！';
         clearTimeout(titleTime);
     }
     else {
-        $('[rel="icon"]').attr('href', "/favicon.ico");
+        $('[rel="icon"]').attr('href', "../medias/keli.png");
         document.title = '(Ő∀Ő3)ノ哇喔！欢迎！' + OriginTitle;
         titleTime = setTimeout(function () {
             document.title = OriginTitle;
