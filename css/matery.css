@@ -39,6 +39,10 @@ body {
     color: #34495e;
     overflow-x: hidden;
     overflow-y: auto;
+    cursor: url("../medias/default.cur"), default;
+}
+a:hover,img {
+    cursor:url("../medias/pointer.cur"), pointer;
 }
 
 h1 {
@@ -551,10 +555,10 @@ header .go-back i {
     height: 40vh !important;
 }
 
-.bg-cover:after {
+/* .bg-cover:after {
     -webkit-animation: rainbow 60s infinite;
     animation: rainbow 60s infinite;
-}
+} */
 
 .bg-cover:before,
 .bg-cover:after {
