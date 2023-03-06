@@ -174,7 +174,7 @@ $(function () {
 //黑夜模式提醒开启功能
 setTimeout(function () {
     if ((new Date().getHours() >= 19 || new Date().getHours() < 7) && !$('body').hasClass('DarkMode')) {
-        let toastHTML = '<span style="color:#FFC0CB;border-radius: 10px;>' + '<i class="fa fa-bellaria-hidden="true"></i>欧尼酱，晚上使用深色模式阅读更好哦。(ﾟ▽ﾟ)</span>'
+        let toastHTML = '<span style="color: #FFC0CB;border-radius: 10px;>' + '<i class="fa fa-bellaria-hidden="true"></i>欧尼酱，晚上使用深色模式阅读更好哦。(ﾟ▽ﾟ)</span>'
         M.toast({ html: toastHTML })
     }
 }, 2200);
@@ -198,8 +198,8 @@ document.addEventListener('visibilitychange', function () {
         clearTimeout(titleTime);
     }
     else {
-        $('[rel="icon"]').attr('href', "./keli.png");
-        // document.title = '(Ő∀Ő3)ノ哇喔！欢迎！' + OriginTitle;
+        // $('[rel="icon"]').attr('href', "./keli.png");
+        document.title = '(Ő∀Ő3)ノ哇喔！欢迎回来！' + OriginTitle;
         titleTime = setTimeout(function () {
             document.title = OriginTitle;
         }, 2000);
