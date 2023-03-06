@@ -188,18 +188,18 @@ if (localStorage.getItem('isDark') === '1') {
     $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')
 }
 //页面离开时
-// 浏览器搞笑标题
+// 浏览器挽留标题
 var OriginTitle = document.title;
 var titleTime;
 document.addEventListener('visibilitychange', function () {
     if (document.hidden) {
-        $('[rel="icon"]').attr('href', "./nahida.png");
+        // $('[rel="icon"]').attr('href', "./nahida.png");
         document.title = 'ヽ(●-`Д´-)ノ你要走嘛我好伤心！';
         clearTimeout(titleTime);
     }
     else {
         $('[rel="icon"]').attr('href', "./keli.png");
-        document.title = '(Ő∀Ő3)ノ哇喔！欢迎！' + OriginTitle;
+        // document.title = '(Ő∀Ő3)ノ哇喔！欢迎！' + OriginTitle;
         titleTime = setTimeout(function () {
             document.title = OriginTitle;
         }, 2000);
