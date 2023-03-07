@@ -101,7 +101,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    <img src="./images/imageloading3.gif" data-original="/medias/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">华紫樱绯</span>
                 </a>
@@ -205,7 +205,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        <img src="./images/imageloading3.gif" data-original="/medias/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">华紫樱绯</div>
         <div class="logo-desc">
@@ -339,12 +339,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/MySQL/">
-                                <span class="chip bg-color">MySQL</span>
-                            </a>
-                        
                             <a href="/tags/%E9%9D%A2%E8%AF%95/">
                                 <span class="chip bg-color">面试</span>
+                            </a>
+                        
+                            <a href="/tags/MySQL/">
+                                <span class="chip bg-color">MySQL</span>
                             </a>
                         
                     </div>
@@ -577,7 +577,7 @@
 <blockquote>
 <p>show variables like ‘log_%’;</p>
 </blockquote>
-<p><img src="https://images.gitbook.cn/48857550-df7e-11e9-9b80-07a210d8c96e"></p>
+<p><img src="./images/imageloading3.gif" data-original="https://images.gitbook.cn/48857550-df7e-11e9-9b80-07a210d8c96e"></p>
 <p>binlog 格式分为 STATEMENT、ROW 和 MIXED 三种。</p>
 <ul>
 <li>STATEMENT 格式的 binlog 记录的是数据库上执行的原生 SQL 语句。这种格式的优点是简单，简单地记录和执行这些语句，能够让主备保持同步，在主服务器上执行的 SQL 语句，在从服务器上执行同样的语句。另一个好处是二进制日志里的时间更加紧凑，因此相对而言，基于语句的复制模式不会使用太多带宽，同时也节约磁盘空间，并且通过 mysqlbinlog 工具容易读懂其中的内容。缺点就是同一条 SQL 在主库和从库上执行的时间可能稍微或很大不相同，因此在传输的二进制日志中，除了查询语句，还包括了一些元数据信息，如当前的时间戳。即便如此，还存在着一些无法被正确复制的 SQL，比如，使用 INSERT INTO TB1 VALUE(CUURENT_DATE()) 这一条使用函数的语句插入的数据复制到当前从服务器上来就会发生变化，存储过程和触发器在使用基于语句的复制模式时也可能存在问题；另外一个问题就是基于语句的复制必须是串行化的，比如，InnoDB 的 next-key 锁等，并不是所有的存储引擎都支持基于语句的复制。</li>
@@ -602,7 +602,7 @@
 <p>explain select * from t where id=5;</p>
 </blockquote>
 <p>如下图所示：</p>
-<p><img src="https://images.gitbook.cn/5ec8ebd0-df7e-11e9-9b80-07a210d8c96e"></p>
+<p><img src="./images/imageloading3.gif" data-original="https://images.gitbook.cn/5ec8ebd0-df7e-11e9-9b80-07a210d8c96e"></p>
 <p>其中：</p>
 <ul>
 <li>id — 选择标识符，id 越大优先级越高，越先被执行</li>
@@ -740,12 +740,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/MySQL/">
-                                    <span class="chip bg-color">MySQL</span>
-                                </a>
-                            
                                 <a href="/tags/%E9%9D%A2%E8%AF%95/">
                                     <span class="chip bg-color">面试</span>
+                                </a>
+                            
+                                <a href="/tags/MySQL/">
+                                    <span class="chip bg-color">MySQL</span>
                                 </a>
                             
                         </div>
@@ -782,10 +782,10 @@
                         <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
                     </ul>
                     <div id="alipay">
-                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                        <img src="./images/imageloading3.gif" data-original="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
                     </div>
                     <div id="wechat">
-                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                        <img src="./images/imageloading3.gif" data-original="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
                     </div>
                 </div>
             </div>
@@ -864,7 +864,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="抽象类和接口的应用面试题">
+                        <img src="./images/imageloading3.gif" data-original="/medias/featureimages/16.jpg" class="responsive-img" alt="抽象类和接口的应用面试题">
                         
                         <span class="card-title">抽象类和接口的应用面试题</span>
                     </div>
@@ -921,7 +921,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Matery主题的配置">
+                        <img src="./images/imageloading3.gif" data-original="/medias/featureimages/4.jpg" class="responsive-img" alt="Matery主题的配置">
                         
                         <span class="card-title">Matery主题的配置</span>
                     </div>
@@ -1485,6 +1485,19 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"left","width":150,"height":320},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-hibiki"},"display":{"position":"left","width":150,"height":320},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 
 </html>
