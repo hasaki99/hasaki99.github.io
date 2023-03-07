@@ -182,7 +182,7 @@
       
       <i class="fas fa-list" style="zoom: 0.6;"></i>
       
-      <span>Medias</span>
+      <span>更多</span>
       <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
     </a>
     <ul class="sub-nav menus_item_child ">
@@ -321,7 +321,7 @@
 			
 				<i class="fa-fw fas fa-list"></i>
 			
-			Medias
+			更多
 			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
 		</a>
             <ul  style="background:  ;" >
@@ -407,9 +407,8 @@
 
 
 <script>
-    // 每天切换 banner 图.  Switch banner image every day.
-    var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
-    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
+    // $('.bg-cover').css('background-image', 'url(/medias/banner/0.jpg)');
+    $('.bg-cover').css('background-image', 'url(/medias/featureimages/14.jpg)')
 </script>
 
 
@@ -861,7 +860,7 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-hibiki"},"display":{"position":"left","width":150,"height":320},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"left","width":150,"height":320},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script>
         <style>
             [bg-lazy] {
                 background-image: none !important;
