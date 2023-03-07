@@ -98,7 +98,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="./images/imageloading3.gif" data-original="/medias/logo.png" class="logo-img" alt="LOGO">
+                    <img src="/medias/images/imageloading3.gif" data-original="/medias/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">华紫樱绯</span>
                 </a>
@@ -202,7 +202,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="./images/imageloading3.gif" data-original="/medias/logo.png" class="logo-img circle responsive-img">
+        <img src="/medias/images/imageloading3.gif" data-original="/medias/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">华紫樱绯</div>
         <div class="logo-desc">
@@ -411,7 +411,7 @@
 <p> <strong>！注意</strong></p>
 <p><strong>(1)有的机器若有/boot/efi分区，那必须要配。</strong></p>
 <p><strong>(2)在使用U盘安装系统的过程中若进入到到dracut界面，则是机器没有找到你的U盘。这个配置是需要在上一步需要完成的，但在上一步我们并不知道U盘的文件名，所以索性在这一步查看一下U盘的设备名具体命令为 cd /dev ;输入 blkid 查看块设备的文件系统类型、LABEL、UUID等信息,然后记下设备名 按Ctrl+Alt+Delete重启回到安装界面，然后再回到安装界面,按下e或Tab进入编辑模式，将vmlinuz initrd=initrd.imginst.stage2=hd:LABEL=RHEL-server-7.0-x86_64-LinuxProbe.Com.iso quiet 这一行改成vmlinuz initrd=initrd.img inst.stage2=hd:/dev/sdb4(设备名) quite，改完按下Ctrl+x或Enter执行,就可以正常安装CentOS系统了。</strong></p>
-<p><img src="./images/imageloading3.gif" data-original="https://juge233.oss-cn-hangzhou.aliyuncs.com/typora_img/image-20221019141121629.png" alt="image-20221019141121629"></p>
+<p><img src="/medias/images/imageloading3.gif" data-original="https://juge233.oss-cn-hangzhou.aliyuncs.com/typora_img/image-20221019141121629.png" alt="image-20221019141121629"></p>
 <h2 id="2-关闭selinux"><a href="#2-关闭selinux" class="headerlink" title="2.关闭selinux"></a>2.关闭selinux</h2><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/selinux/config</span><br><span class="line">SELINUX=disabled</span><br><span class="line">reboot</span><br></pre></td></tr></tbody></table></figure>
 
 <h2 id="3-优化ulimit"><a href="#3-优化ulimit" class="headerlink" title="3.优化ulimit"></a>3.优化ulimit</h2><p>修改/etc/security/limits.conf 加入以下两行,reboot重启生效</p>
@@ -628,10 +628,10 @@
                         <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
                     </ul>
                     <div id="alipay">
-                        <img src="./images/imageloading3.gif" data-original="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                        <img src="/medias/images/imageloading3.gif" data-original="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
                     </div>
                     <div id="wechat">
-                        <img src="./images/imageloading3.gif" data-original="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                        <img src="/medias/images/imageloading3.gif" data-original="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
                     </div>
                 </div>
             </div>
@@ -710,7 +710,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="./images/imageloading3.gif" data-original="/medias/featureimages/4.jpg" class="responsive-img" alt="Matery主题的配置">
+                        <img src="/medias/images/imageloading3.gif" data-original="/medias/featureimages/4.jpg" class="responsive-img" alt="Matery主题的配置">
                         
                         <span class="card-title">Matery主题的配置</span>
                     </div>
@@ -767,7 +767,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="./images/imageloading3.gif" data-original="/medias/featureimages/0.jpg" class="responsive-img" alt="CentOS7安装与配置">
+                        <img src="/medias/images/imageloading3.gif" data-original="/medias/featureimages/0.jpg" class="responsive-img" alt="CentOS7安装与配置">
                         
                         <span class="card-title">CentOS7安装与配置</span>
                     </div>
@@ -1328,7 +1328,7 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-hibiki"},"display":{"position":"left","width":150,"height":320},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script>
         <style>
             [bg-lazy] {
                 background-image: none !important;
@@ -1341,6 +1341,6 @@ $(function () {
                 preloadRatio: 1,
                 processImages: null,
             };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-hibiki"},"display":{"position":"left","width":150,"height":320},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body>
 
 </html>
