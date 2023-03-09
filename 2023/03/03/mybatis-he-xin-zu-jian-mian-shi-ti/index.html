@@ -364,6 +364,19 @@ MyBatis&amp;nbsp;介绍MyBatis 是一款优秀的 ORM（Object Relational Mappin
 </header>
 
     
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
 
 
 
@@ -465,6 +478,9 @@ MyBatis&amp;nbsp;介绍MyBatis 是一款优秀的 ORM（Object Relational Mappin
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
 
         
 
@@ -505,14 +521,46 @@ MyBatis&amp;nbsp;介绍MyBatis 是一款优秀的 ORM（Object Relational Mappin
 <li>操作数据库，拥有了执行器和 SQL 信息封装对象就使用它们访问数据库了，最后再返回操作结果，结束流程。</li>
 </ol>
 <h3 id="MyBatis-XML-版"><a href="#MyBatis-XML-版" class="headerlink" title="MyBatis&nbsp;XML&nbsp;版"></a>MyBatis&nbsp;XML&nbsp;版</h3><p>MyBatis&nbsp;使用分为两个版本：XML&nbsp;版和&nbsp;Java&nbsp;注解版。接下来我们使用 Spring Boot 结合 MyBatis 的 XML 版，来实现对数据库的基本操作，步骤如下。</p>
-<h4 id="1）创建数据表"><a href="#1）创建数据表" class="headerlink" title="1）创建数据表"></a>1）创建数据表</h4><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">drop table if exists `t_user`;</span><br><span class="line">create table `t_user` (</span><br><span class="line">  `id` bigint(20) not null auto_increment comment '主键id',</span><br><span class="line">  `username` varchar(32) default null comment '用户名',</span><br><span class="line">  `password` varchar(32) default null comment '密码',</span><br><span class="line">  `nick_name` varchar(32) default null,</span><br><span class="line">  primary key (`id`)</span><br><span class="line">) engine=innodb auto_increment=1 default charset=utf8;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h4 id="1）创建数据表"><a href="#1）创建数据表" class="headerlink" title="1）创建数据表"></a>1）创建数据表</h4><pre class="line-numbers language-none"><code class="language-none">drop table if exists `t_user`;
+create table `t_user` (
+  `id` bigint(20) not null auto_increment comment '主键id',
+  `username` varchar(32) default null comment '用户名',
+  `password` varchar(32) default null comment '密码',
+  `nick_name` varchar(32) default null,
+  primary key (`id`)
+) engine=innodb auto_increment=1 default charset=utf8;
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="2）添加依赖"><a href="#2）添加依赖" class="headerlink" title="2）添加依赖"></a>2）添加依赖</h4><p>在项目添加对 MyBatis 和 MySQL 支持的依赖包，在&nbsp;pom.xml&nbsp;文件中添加如下代码：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.1.0&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;8.0.16&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&lt;dependency&gt;
+    &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;
+    &lt;version&gt;2.1.0&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;mysql&lt;/groupId&gt;
+    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+    &lt;version&gt;8.0.16&lt;/version&gt;
+&lt;/dependency&gt;
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>mybatis-spring-boot-starter 是 MyBatis 官方帮助我们快速集成 Spring Boot 提供的一个组件包，mybatis-spring-boot-starter 2.1.0 对应 MyBatis 的版本是 3.5.2。</p>
 <h4 id="3）增加配置文件"><a href="#3）增加配置文件" class="headerlink" title="3）增加配置文件"></a>3）增加配置文件</h4><p>在&nbsp;application.yml&nbsp;文件中添加以下内容：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    url: jdbc:mysql://localhost:3306/learndb?serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true</span><br><span class="line">    username: root</span><br><span class="line">    password: root</span><br><span class="line">    driver-class-name: com.mysql.cj.jdbc.Driver</span><br><span class="line">mybatis:</span><br><span class="line">  config-location: classpath:mybatis/mybatis-config.xml</span><br><span class="line">  mapper-locations: classpath:mybatis/mapper/*.xml</span><br><span class="line">  type-aliases-package: com.interview.mybatislearning.model</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/learndb?serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: com.interview.mybatislearning.model
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>其中：</p>
 <ul>
@@ -521,26 +569,163 @@ MyBatis&amp;nbsp;介绍MyBatis 是一款优秀的 ORM（Object Relational Mappin
 <li>mybatis.type-aliases-package：配置项目中实体类包路径。</li>
 </ul>
 <p>注：如果配置文件使用的是&nbsp;application.properties，配置内容是相同的，只是内容格式不同。</p>
-<h4 id="4）创建实体类"><a href="#4）创建实体类" class="headerlink" title="4）创建实体类"></a>4）创建实体类</h4><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">public class UserEntity implements Serializable {</span><br><span class="line">    private static final long serialVersionUID = -5980266333958177104L;</span><br><span class="line">    private Integer id;</span><br><span class="line">    private String userName;</span><br><span class="line">    private String passWord;</span><br><span class="line">    private String nickName;</span><br><span class="line">    public UserEntity(String userName, String passWord, String nickName) {</span><br><span class="line">        this.userName = userName;</span><br><span class="line">        this.passWord = passWord;</span><br><span class="line">        this.nickName = nickName;</span><br><span class="line">    }</span><br><span class="line">    public Integer getId() {</span><br><span class="line">        return id;</span><br><span class="line">    }</span><br><span class="line">    public void setId(Integer id) {</span><br><span class="line">        this.id = id;</span><br><span class="line">    }</span><br><span class="line">    public String getUserName() {</span><br><span class="line">        return userName;</span><br><span class="line">    }</span><br><span class="line">    public void setUserName(String userName) {</span><br><span class="line">        this.userName = userName;</span><br><span class="line">    }</span><br><span class="line">    public String getPassWord() {</span><br><span class="line">        return passWord;</span><br><span class="line">    }</span><br><span class="line">    public void setPassWord(String passWord) {</span><br><span class="line">        this.passWord = passWord;</span><br><span class="line">    }</span><br><span class="line">    public String getNickName() {</span><br><span class="line">        return nickName;</span><br><span class="line">    }</span><br><span class="line">    public void setNickName(String nickName) {</span><br><span class="line">        this.nickName = nickName;</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h4 id="4）创建实体类"><a href="#4）创建实体类" class="headerlink" title="4）创建实体类"></a>4）创建实体类</h4><pre class="line-numbers language-none"><code class="language-none">public class UserEntity implements Serializable {
+    private static final long serialVersionUID = -5980266333958177104L;
+    private Integer id;
+    private String userName;
+    private String passWord;
+    private String nickName;
+    public UserEntity(String userName, String passWord, String nickName) {
+        this.userName = userName;
+        this.passWord = passWord;
+        this.nickName = nickName;
+    }
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public String getUserName() {
+        return userName;
+    }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+    public String getPassWord() {
+        return passWord;
+    }
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
+    }
+    public String getNickName() {
+        return nickName;
+    }
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+}
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="5）创建-XML-文件"><a href="#5）创建-XML-文件" class="headerlink" title="5）创建&nbsp;XML&nbsp;文件"></a>5）创建&nbsp;XML&nbsp;文件</h4><p><strong>mybatis-config.xml</strong>（基础配置文件）：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span><br><span class="line">&lt;!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;typeAliases&gt;</span><br><span class="line">        &lt;typeAlias alias="Integer" type="java.lang.Integer"/&gt;</span><br><span class="line">        &lt;typeAlias alias="Long" type="java.lang.Long"/&gt;</span><br><span class="line">        &lt;typeAlias alias="HashMap" type="java.util.HashMap"/&gt;</span><br><span class="line">        &lt;typeAlias alias="LinkedHashMap" type="java.util.LinkedHashMap"/&gt;</span><br><span class="line">        &lt;typeAlias alias="ArrayList" type="java.util.ArrayList"/&gt;</span><br><span class="line">        &lt;typeAlias alias="LinkedList" type="java.util.LinkedList"/&gt;</span><br><span class="line">    &lt;/typeAliases&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;
+&lt;configuration&gt;
+    &lt;typeAliases&gt;
+        &lt;typeAlias alias="Integer" type="java.lang.Integer"/&gt;
+        &lt;typeAlias alias="Long" type="java.lang.Long"/&gt;
+        &lt;typeAlias alias="HashMap" type="java.util.HashMap"/&gt;
+        &lt;typeAlias alias="LinkedHashMap" type="java.util.LinkedHashMap"/&gt;
+        &lt;typeAlias alias="ArrayList" type="java.util.ArrayList"/&gt;
+        &lt;typeAlias alias="LinkedList" type="java.util.LinkedList"/&gt;
+    &lt;/typeAliases&gt;
+&lt;/configuration&gt;
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>mybatis-config.xml&nbsp;主要是为常用的数据类型设置别名，用于减少类完全限定名的长度，比如：<code>resultType="Integer"</code>&nbsp;完整示例代码如下：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id="getAllCount" resultType="Integer"&gt;</span><br><span class="line">    select</span><br><span class="line">    count(*)</span><br><span class="line">    from t_user</span><br><span class="line">&lt;/select&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&lt;select id="getAllCount" resultType="Integer"&gt;
+    select
+    count(*)
+    from t_user
+&lt;/select&gt;
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>UserMapper.xml</strong>（业务配置文件）：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" &gt;</span><br><span class="line">&lt;mapper namespace="com.interview.mybatislearning.mapper.UserMapper"&gt;</span><br><span class="line">    &lt;resultMap id="BaseResultMap" type="com.interview.mybatislearning.model.UserEntity" &gt;</span><br><span class="line">        &lt;id column="id" property="id" jdbcType="BIGINT" /&gt;</span><br><span class="line">        &lt;result column="username" property="userName" jdbcType="VARCHAR" /&gt;</span><br><span class="line">        &lt;result column="password" property="passWord" jdbcType="VARCHAR" /&gt;</span><br><span class="line">        &lt;result column="nick_name" property="nickName" jdbcType="VARCHAR" /&gt;</span><br><span class="line">    &lt;/resultMap&gt;</span><br><span class="line">    &lt;sql id="Base_Column_List" &gt;</span><br><span class="line">        id, username, password, nick_name</span><br><span class="line">    &lt;/sql&gt;</span><br><span class="line">    &lt;sql id="Base_Where_List"&gt;</span><br><span class="line">        &lt;if test="userName != null  and userName != ''"&gt;</span><br><span class="line">            and userName = #{userName}</span><br><span class="line">        &lt;/if&gt;</span><br><span class="line">    &lt;/sql&gt;</span><br><span class="line">    &lt;select id="getAll" resultMap="BaseResultMap"  &gt;</span><br><span class="line">        SELECT</span><br><span class="line">        &lt;include refid="Base_Column_List" /&gt;</span><br><span class="line">        FROM t_user</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">    &lt;select id="getOne" parameterType="Long" resultMap="BaseResultMap" &gt;</span><br><span class="line">        SELECT</span><br><span class="line">        &lt;include refid="Base_Column_List" /&gt;</span><br><span class="line">        FROM t_user</span><br><span class="line">        WHERE id = #{id}</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">    &lt;insert id="insert" parameterType="com.interview.mybatislearning.model.UserEntity" &gt;</span><br><span class="line">       INSERT INTO</span><br><span class="line">               t_user</span><br><span class="line">               (username,password,nick_name)</span><br><span class="line">           VALUES</span><br><span class="line">               (#{userName}, #{passWord}, #{nickName})</span><br><span class="line">    &lt;/insert&gt;</span><br><span class="line">    &lt;update id="update" parameterType="com.interview.mybatislearning.model.UserEntity" &gt;</span><br><span class="line">        UPDATE</span><br><span class="line">        t_user</span><br><span class="line">        SET</span><br><span class="line">        &lt;if test="userName != null"&gt;username = #{userName},&lt;/if&gt;</span><br><span class="line">        &lt;if test="passWord != null"&gt;password = #{passWord},&lt;/if&gt;</span><br><span class="line">        nick_name = #{nickName}</span><br><span class="line">        WHERE</span><br><span class="line">        id = #{id}</span><br><span class="line">    &lt;/update&gt;</span><br><span class="line">    &lt;delete id="delete" parameterType="Long" &gt;</span><br><span class="line">       DELETE FROM</span><br><span class="line">                t_user</span><br><span class="line">       WHERE</span><br><span class="line">                id =#{id}</span><br><span class="line">    &lt;/delete&gt;</span><br><span class="line">&lt;/mapper&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" &gt;
+&lt;mapper namespace="com.interview.mybatislearning.mapper.UserMapper"&gt;
+    &lt;resultMap id="BaseResultMap" type="com.interview.mybatislearning.model.UserEntity" &gt;
+        &lt;id column="id" property="id" jdbcType="BIGINT" /&gt;
+        &lt;result column="username" property="userName" jdbcType="VARCHAR" /&gt;
+        &lt;result column="password" property="passWord" jdbcType="VARCHAR" /&gt;
+        &lt;result column="nick_name" property="nickName" jdbcType="VARCHAR" /&gt;
+    &lt;/resultMap&gt;
+    &lt;sql id="Base_Column_List" &gt;
+        id, username, password, nick_name
+    &lt;/sql&gt;
+    &lt;sql id="Base_Where_List"&gt;
+        &lt;if test="userName != null  and userName != ''"&gt;
+            and userName = #{userName}
+        &lt;/if&gt;
+    &lt;/sql&gt;
+    &lt;select id="getAll" resultMap="BaseResultMap"  &gt;
+        SELECT
+        &lt;include refid="Base_Column_List" /&gt;
+        FROM t_user
+    &lt;/select&gt;
+    &lt;select id="getOne" parameterType="Long" resultMap="BaseResultMap" &gt;
+        SELECT
+        &lt;include refid="Base_Column_List" /&gt;
+        FROM t_user
+        WHERE id = #{id}
+    &lt;/select&gt;
+    &lt;insert id="insert" parameterType="com.interview.mybatislearning.model.UserEntity" &gt;
+       INSERT INTO
+               t_user
+               (username,password,nick_name)
+           VALUES
+               (#{userName}, #{passWord}, #{nickName})
+    &lt;/insert&gt;
+    &lt;update id="update" parameterType="com.interview.mybatislearning.model.UserEntity" &gt;
+        UPDATE
+        t_user
+        SET
+        &lt;if test="userName != null"&gt;username = #{userName},&lt;/if&gt;
+        &lt;if test="passWord != null"&gt;password = #{passWord},&lt;/if&gt;
+        nick_name = #{nickName}
+        WHERE
+        id = #{id}
+    &lt;/update&gt;
+    &lt;delete id="delete" parameterType="Long" &gt;
+       DELETE FROM
+                t_user
+       WHERE
+                id =#{id}
+    &lt;/delete&gt;
+&lt;/mapper&gt;
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>以上配置我们增加了增删改查等基础方法。</p>
 <h4 id="6）增加-Mapper-文件"><a href="#6）增加-Mapper-文件" class="headerlink" title="6）增加&nbsp;Mapper&nbsp;文件"></a>6）增加&nbsp;Mapper&nbsp;文件</h4><p>此步骤我们需要创建一个与&nbsp;XML&nbsp;对应的业务&nbsp;Mapper&nbsp;接口，代码如下：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public interface UserMapper {</span><br><span class="line">    List&lt;UserEntity&gt; getAll();</span><br><span class="line">    UserEntity getOne(Long id);</span><br><span class="line">    void insert(UserEntity user);</span><br><span class="line">    void update(UserEntity user);</span><br><span class="line">    void delete(Long id);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">public interface UserMapper {
+    List&lt;UserEntity&gt; getAll();
+    UserEntity getOne(Long id);
+    void insert(UserEntity user);
+    void update(UserEntity user);
+    void delete(Long id);
+}
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="7）添加-Mapper-包扫描"><a href="#7）添加-Mapper-包扫描" class="headerlink" title="7）添加 Mapper 包扫描"></a>7）添加 Mapper 包扫描</h4><p>在启动类中添加 @MapperScan，设置 Spring Boot 启动的时候会自动加载包路径下的 Mapper。</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@MapperScan("com.interview.mybatislearning.mapper")</span><br><span class="line">public class MyBatisLearningApplication {</span><br><span class="line">   public static void main(String[] args) {</span><br><span class="line">       SpringApplication.run(MyBatisLearningApplication.class, args);</span><br><span class="line">   }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">@SpringBootApplication
+@MapperScan("com.interview.mybatislearning.mapper")
+public class MyBatisLearningApplication {
+   public static void main(String[] args) {
+       SpringApplication.run(MyBatisLearningApplication.class, args);
+   }
+}
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="8）编写测试代码"><a href="#8）编写测试代码" class="headerlink" title="8）编写测试代码"></a>8）编写测试代码</h4><p>经过以上步骤之后，整个&nbsp;MyBatis&nbsp;的集成就算完成了。接下来我们写一个单元测试，验证一下。</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(SpringRunner.class)</span><br><span class="line">@SpringBootTest</span><br><span class="line">public class MybatislearningApplicationTests {</span><br><span class="line">    @Resource</span><br><span class="line">    private UserMapper userMapper;</span><br><span class="line">    @Test</span><br><span class="line">    public void testInsert() {</span><br><span class="line">        userMapper.insert(new UserEntity("laowang", "123456", "老王"));</span><br><span class="line">        Assert.assertEquals(1, userMapper.getAll().size());</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">@RunWith(SpringRunner.class)
+@SpringBootTest
+public class MybatislearningApplicationTests {
+    @Resource
+    private UserMapper userMapper;
+    @Test
+    public void testInsert() {
+        userMapper.insert(new UserEntity("laowang", "123456", "老王"));
+        Assert.assertEquals(1, userMapper.getAll().size());
+    }
+}
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>通过本文我们知道 MyBatis 是一个优秀和灵活的数据持久化框架，MyBatis 包含 Mapper 配置、Mapper 接口、Executor、SqlSession、SqlSessionFactory 等几个重要的组件，知道了 MyBatis 基本流程：MyBatis 首先加载 Mapper 配置和 SQL 映射文件，通过创建会话工厂得到 SqlSession 对象，再执行 SQL 语句并返回操作信息。我们也使用 XML 的方式，实现了 MyBatis 对数据库的基础操作。</p>
 
@@ -883,6 +1068,9 @@ MyBatis&amp;nbsp;介绍MyBatis 是一款优秀的 ORM（Object Relational Mappin
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
 
 <!-- 代码语言 -->
 
@@ -1005,7 +1193,7 @@ MyBatis&amp;nbsp;介绍MyBatis 是一款优秀的 ORM（Object Relational Mappin
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">47.7k</span>
+                        class="white-color">47.8k</span>
             
             
             
@@ -1350,7 +1538,7 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"left","width":150,"height":320},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script>
+
         <style>
             [bg-lazy] {
                 background-image: none !important;
@@ -1363,6 +1551,6 @@ $(function () {
                 preloadRatio: 1,
                 processImages: null,
             };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,c=(r.imageLazyLoadSetting.preloadRatio,n());function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=n());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight+240||document.documentElement.clientHeight+240)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),r.addEventListener("resize",a),r.addEventListener("orientationchange",a)}(this);</script></body>
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,c=(r.imageLazyLoadSetting.preloadRatio,n());function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=n());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight+240||document.documentElement.clientHeight+240)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),r.addEventListener("resize",a),r.addEventListener("orientationchange",a)}(this);</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"left","width":150,"height":320},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 
 </html>

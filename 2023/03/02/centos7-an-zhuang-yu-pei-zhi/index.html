@@ -364,6 +364,19 @@
 </header>
 
     
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
 
 
 
@@ -461,6 +474,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
 
         
 
@@ -472,14 +488,25 @@
 <p><strong>(1)有的机器若有/boot/efi分区，那必须要配。</strong></p>
 <p><strong>(2)在使用U盘安装系统的过程中若进入到到dracut界面，则是机器没有找到你的U盘。这个配置是需要在上一步需要完成的，但在上一步我们并不知道U盘的文件名，所以索性在这一步查看一下U盘的设备名具体命令为 cd /dev ;输入 blkid 查看块设备的文件系统类型、LABEL、UUID等信息,然后记下设备名 按Ctrl+Alt+Delete重启回到安装界面，然后再回到安装界面,按下e或Tab进入编辑模式，将vmlinuz initrd=initrd.imginst.stage2=hd:LABEL=RHEL-server-7.0-x86_64-LinuxProbe.Com.iso quiet 这一行改成vmlinuz initrd=initrd.img inst.stage2=hd:/dev/sdb4(设备名) quite，改完按下Ctrl+x或Enter执行,就可以正常安装CentOS系统了。</strong></p>
 <p><img src="/medias/images/imageloading3.gif" data-original="https://juge233.oss-cn-hangzhou.aliyuncs.com/typora_img/image-20221019141121629.png" alt="image-20221019141121629"></p>
-<h2 id="2-关闭selinux"><a href="#2-关闭selinux" class="headerlink" title="2.关闭selinux"></a>2.关闭selinux</h2><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/selinux/config</span><br><span class="line">SELINUX=disabled</span><br><span class="line">reboot</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="2-关闭selinux"><a href="#2-关闭selinux" class="headerlink" title="2.关闭selinux"></a>2.关闭selinux</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vi</span> /etc/selinux/config
+<span class="token assign-left variable">SELINUX</span><span class="token operator">=</span>disabled
+<span class="token function">reboot</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="3-优化ulimit"><a href="#3-优化ulimit" class="headerlink" title="3.优化ulimit"></a>3.优化ulimit</h2><p>修改/etc/security/limits.conf 加入以下两行,reboot重启生效</p>
-<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">soft nofile 32768</span><br><span class="line">hard nofile 65536</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">soft nofile <span class="token number">32768</span>
+hard nofile <span class="token number">65536</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h2 id="4-配置网卡"><a href="#4-配置网卡" class="headerlink" title="4.配置网卡"></a>4.配置网卡</h2><p>ip addr查看网卡信息，由于CentOS mini安装没有net-tools工具包，不能使用ifconfig 查看地址，使用 yum install -y net-tools（yum install net-tools.x86_64）可以安装</p>
 <p>编辑网卡配置文件#vi /etc/sysconfig/network-scripts/ifcfg-enxxx（网卡名称）</p>
-<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">BOOTPROTO=none</span><br><span class="line">NAME=enp7s0</span><br><span class="line">DEVICE=enp7s0</span><br><span class="line">ONBOOT=yes</span><br><span class="line">IPADDR=10.10.1.112</span><br><span class="line">GATEWAY=10.10.1.254</span><br><span class="line">DNS1=114.114.114.114</span><br><span class="line">DNS2=8.8.8.8</span><br><span class="line">PREFIX=24</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">BOOTPROTO</span><span class="token operator">=</span>none
+<span class="token assign-left variable">NAME</span><span class="token operator">=</span>enp7s0
+<span class="token assign-left variable">DEVICE</span><span class="token operator">=</span>enp7s0
+<span class="token assign-left variable">ONBOOT</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPADDR</span><span class="token operator">=</span><span class="token number">10.10</span>.1.112
+<span class="token assign-left variable">GATEWAY</span><span class="token operator">=</span><span class="token number">10.10</span>.1.254
+<span class="token assign-left variable">DNS1</span><span class="token operator">=</span><span class="token number">114.114</span>.114.114
+<span class="token assign-left variable">DNS2</span><span class="token operator">=</span><span class="token number">8.8</span>.8.8
+<span class="token assign-left variable">PREFIX</span><span class="token operator">=</span><span class="token number">24</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>配置完成后执行service network restart或者/etc/init.d/network restart 来重启网络</p>
 <h2 id="5-常用命令"><a href="#5-常用命令" class="headerlink" title="5.常用命令"></a>5.常用命令</h2><p>shutdown -h now 关闭系统  /halt 关闭系统  poweroff /关闭系统</p>
@@ -564,15 +591,51 @@
 <p><strong>（前提是远程服务器提供jstatd服务）</strong></p>
 <p><strong>注：jps命令有个地方很不好，似乎只能显示当前用户的java进程，要显示其他用户的还是只能用unix/linux的ps命令。</strong></p>
 <h1 id="安装Srun-4000系统"><a href="#安装Srun-4000系统" class="headerlink" title="安装Srun 4000系统"></a>安装Srun 4000系统</h1><h2 id="1-安装srun4k"><a href="#1-安装srun4k" class="headerlink" title="1.安装srun4k"></a>1.安装srun4k</h2><p>获取srun4k包 解压到根目录 /</p>
-<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /</span><br><span class="line">tar -zxvf srun4_centos7_xxxxx.tgz</span><br><span class="line">cd /srun3</span><br><span class="line">./install &gt; ./install.log</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /
+<span class="token function">tar</span> <span class="token parameter variable">-zxvf</span> srun4_centos7_xxxxx.tgz
+<span class="token builtin class-name">cd</span> /srun3
+./install <span class="token operator">&gt;</span> ./install.log<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="2-卸载srun4k"><a href="#2-卸载srun4k" class="headerlink" title="2.卸载srun4k"></a>2.卸载srun4k</h2><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /srun3</span><br><span class="line">./uninstall</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="2-卸载srun4k"><a href="#2-卸载srun4k" class="headerlink" title="2.卸载srun4k"></a>2.卸载srun4k</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /srun3
+./uninstall<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<h2 id="3-相关命令"><a href="#3-相关命令" class="headerlink" title="3.相关命令"></a>3.相关命令</h2><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">/srun3/bin/srun3d status # 服务状态</span><br><span class="line">/srun3/bin/srun3d start # 服务启动</span><br><span class="line">/srun3/bin/srun3d restart # 服务重启</span><br><span class="line">/srun3/bin/srun3d stop # 服务关闭</span><br><span class="line">/srun3/bin/rad_auth -v #查看内核版本号及server id</span><br><span class="line">/srun3/bin/server_aaa restart</span><br><span class="line">/srun3/bin/server_portal restart</span><br><span class="line">/srun3/bin/server_httpd restart</span><br><span class="line">/etc/init.d/srun3kauth restart #修改Portal页面后执行命令</span><br><span class="line">/srun3/bin/server_bas start  #单独启动DPDK网关</span><br><span class="line">/srun3/www/Srun4k-webcron-install_v1.1.3.bin #srun4k开启定时任务8000</span><br><span class="line">netstat -tupln | grep nginx  #查看nginx端口</span><br><span class="line">route #显示和操作 IP 路由表。</span><br><span class="line">routel #以好看的输出格式列出路由</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">抓包相关</span></span><br><span class="line">tcpdump -i any -u udp-w /root/xxx.pcap </span><br><span class="line">tcpdump -i eth0 port 1812 or 1813 or 3799 or 2000 -w/na.cap</span><br><span class="line">killall srun_portal_server;/srun3/bin/srun_portal_server -d</span><br><span class="line">killall rad_dm;/srun3/bin/rad_dm -d</span><br><span class="line">killall radiusd;/srun3/radius/sbin/radiusd -X  &gt;/radius.txt &amp;</span><br><span class="line">ss -tnl  #查看主机监听的tcp端口信息</span><br><span class="line">/srun3/bin/ldap_test -s -u 用户名   #ldap测试用户名</span><br><span class="line">修改Portal页面后执行命令 /etc/init.d/srun3kauth restart</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="3-相关命令"><a href="#3-相关命令" class="headerlink" title="3.相关命令"></a>3.相关命令</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">/srun3/bin/srun3d status <span class="token comment"># 服务状态</span>
+/srun3/bin/srun3d start <span class="token comment"># 服务启动</span>
+/srun3/bin/srun3d restart <span class="token comment"># 服务重启</span>
+/srun3/bin/srun3d stop <span class="token comment"># 服务关闭</span>
+/srun3/bin/rad_auth <span class="token parameter variable">-v</span> <span class="token comment">#查看内核版本号及server id</span>
+/srun3/bin/server_aaa restart
+/srun3/bin/server_portal restart
+/srun3/bin/server_httpd restart
+/etc/init.d/srun3kauth restart <span class="token comment">#修改Portal页面后执行命令</span>
+/srun3/bin/server_bas start  <span class="token comment">#单独启动DPDK网关</span>
+/srun3/www/Srun4k-webcron-install_v1.1.3.bin <span class="token comment">#srun4k开启定时任务8000</span>
+<span class="token function">netstat</span> <span class="token parameter variable">-tupln</span> <span class="token operator">|</span> <span class="token function">grep</span> nginx  <span class="token comment">#查看nginx端口</span>
+route <span class="token comment">#显示和操作 IP 路由表。</span>
+routel <span class="token comment">#以好看的输出格式列出路由</span>
+<span class="token comment">#抓包相关</span>
+tcpdump <span class="token parameter variable">-i</span> any <span class="token parameter variable">-u</span> udp-w /root/xxx.pcap 
+tcpdump <span class="token parameter variable">-i</span> eth0 port <span class="token number">1812</span> or <span class="token number">1813</span> or <span class="token number">3799</span> or <span class="token number">2000</span> -w/na.cap
+<span class="token function">killall</span> srun_portal_server<span class="token punctuation">;</span>/srun3/bin/srun_portal_server <span class="token parameter variable">-d</span>
+<span class="token function">killall</span> rad_dm<span class="token punctuation">;</span>/srun3/bin/rad_dm <span class="token parameter variable">-d</span>
+<span class="token function">killall</span> radiusd<span class="token punctuation">;</span>/srun3/radius/sbin/radiusd <span class="token parameter variable">-X</span>  <span class="token operator">&gt;</span>/radius.txt <span class="token operator">&amp;</span>
+ss <span class="token parameter variable">-tnl</span>  <span class="token comment">#查看主机监听的tcp端口信息</span>
+/srun3/bin/ldap_test <span class="token parameter variable">-s</span> <span class="token parameter variable">-u</span> 用户名   <span class="token comment">#ldap测试用户名</span>
+修改Portal页面后执行命令 /etc/init.d/srun3kauth restart
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>ss详情</p>
 <p>ss 是 Socket Statistics 的缩写。ss 命令可以用来获取 socket 统计信息，它显示的内容和 netstat 类似。但 ss 的优势在于它能够显示更多更详细的有关 TCP 和连接状态的信息，而且比 netstat 更快。当服务器的 socket 连接数量变得非常大时，无论是使用 netstat 命令还是直接 cat /proc/net/tcp，执行速度都会很慢。ss 命令利用到了 TCP 协议栈中 tcp_diag。tcp_diag 是一个用于分析统计的模块，可以获得 Linux 内核中第一手的信息，因此 ss 命令的性能会好很多。</p>
-<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-h, --help 帮助</span><br><span class="line">-V, --version 显示版本号</span><br><span class="line">-t, --tcp 显示 TCP 协议的 sockets</span><br><span class="line">-u, --udp 显示 UDP 协议的 sockets</span><br><span class="line">-x, --unix 显示 unix domain sockets，与 -f 选项相同</span><br><span class="line">-n, --numeric 不解析服务的名称，如 "22" 端口不会显示成 "ssh"</span><br><span class="line">-l, --listening 只显示处于监听状态的端口</span><br><span class="line">-p, --processes 显示监听端口的进程(Ubuntu 上需要 sudo)</span><br><span class="line">-a, --all 对 TCP 协议来说，既包含监听的端口，也包含建立的连接</span><br><span class="line">-r, --resolve 把 IP 解释为域名，把端口号解释为协议名称</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">-h, <span class="token parameter variable">--help</span> 帮助
+-V, <span class="token parameter variable">--version</span> 显示版本号
+-t, <span class="token parameter variable">--tcp</span> 显示 TCP 协议的 sockets
+-u, <span class="token parameter variable">--udp</span> 显示 UDP 协议的 sockets
+-x, <span class="token parameter variable">--unix</span> 显示 unix domain sockets，与 <span class="token parameter variable">-f</span> 选项相同
+-n, <span class="token parameter variable">--numeric</span> 不解析服务的名称，如 <span class="token string">"22"</span> 端口不会显示成 <span class="token string">"ssh"</span>
+-l, <span class="token parameter variable">--listening</span> 只显示处于监听状态的端口
+-p, <span class="token parameter variable">--processes</span> 显示监听端口的进程<span class="token punctuation">(</span>Ubuntu 上需要 <span class="token function">sudo</span><span class="token punctuation">)</span>
+-a, <span class="token parameter variable">--all</span> 对 TCP 协议来说，既包含监听的端口，也包含建立的连接
+-r, <span class="token parameter variable">--resolve</span> 把 IP 解释为域名，把端口号解释为协议名称<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -919,6 +982,9 @@
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
 
 <!-- 代码语言 -->
 
@@ -1041,7 +1107,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">47.7k</span>
+                        class="white-color">47.8k</span>
             
             
             
@@ -1386,7 +1452,7 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"left","width":150,"height":320},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script>
+
         <style>
             [bg-lazy] {
                 background-image: none !important;
@@ -1399,6 +1465,6 @@ $(function () {
                 preloadRatio: 1,
                 processImages: null,
             };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,c=(r.imageLazyLoadSetting.preloadRatio,n());function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=n());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight+240||document.documentElement.clientHeight+240)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),r.addEventListener("resize",a),r.addEventListener("orientationchange",a)}(this);</script></body>
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,c=(r.imageLazyLoadSetting.preloadRatio,n());function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=n());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight+240||document.documentElement.clientHeight+240)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),r.addEventListener("resize",a),r.addEventListener("orientationchange",a)}(this);</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"left","width":150,"height":320},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 
 </html>

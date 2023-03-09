@@ -363,6 +363,19 @@
 </header>
 
     
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
 
 
 
@@ -464,6 +477,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
 
         
 
@@ -471,13 +487,44 @@
             <div id="articleContent">
                 <h2 id="抽象类和接口的应用-面试题"><a href="#抽象类和接口的应用-面试题" class="headerlink" title="抽象类和接口的应用 + 面试题"></a>抽象类和接口的应用 + 面试题</h2><h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>在面向对象的概念中，所有的对象都是通过类来描绘的，但是反过来，并不是所有的类都是用来描绘对象的，如果一个类中没有包含足够的信息来描绘一个具体的对象，这样的类就是抽象类。简单来说，使用关键字 <strong>abstract</strong> 修饰的类就叫做抽象类。</p>
 <h4 id="抽象类使用"><a href="#抽象类使用" class="headerlink" title="抽象类使用"></a>抽象类使用</h4><p>示例代码，如下：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">abstract class AbstractAnimal {</span><br><span class="line">    public AbstractAnimal() {</span><br><span class="line">        System.out.println("Init AbstractAnimal.");</span><br><span class="line">    }</span><br><span class="line">    static String name = "AbstractAnimal";</span><br><span class="line">    public abstract void eat();</span><br><span class="line">    public void run() {</span><br><span class="line">        System.out.println("AbstractAnimal Run.");</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">class Animal extends AbstractAnimal {</span><br><span class="line">    public static void main(String[] args) {</span><br><span class="line">        AbstractAnimal animal = new Animal();</span><br><span class="line">        animal.run();</span><br><span class="line">        System.out.println(animal.name);</span><br><span class="line">        animal.eat();</span><br><span class="line">    }</span><br><span class="line">  </span><br><span class="line">    @Override</span><br><span class="line">    public void eat() {</span><br><span class="line">        System.out.println("Animal Eat.");</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">abstract class AbstractAnimal {
+    public AbstractAnimal() {
+        System.out.println("Init AbstractAnimal.");
+    }
+    static String name = "AbstractAnimal";
+    public abstract void eat();
+    public void run() {
+        System.out.println("AbstractAnimal Run.");
+    }
+}
+class Animal extends AbstractAnimal {
+    public static void main(String[] args) {
+        AbstractAnimal animal = new Animal();
+        animal.run();
+        System.out.println(animal.name);
+        animal.eat();
+    }
+  
+    @Override
+    public void eat() {
+        System.out.println("Animal Eat.");
+    }
+}
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>以上代码执行的结果：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Init AbstractAnimal.</span><br><span class="line">AbstractAnimal Run.</span><br><span class="line">AbstractAnimal</span><br><span class="line">Animal Eat.</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">Init AbstractAnimal.
+AbstractAnimal Run.
+AbstractAnimal
+Animal Eat.
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="抽象方法"><a href="#抽象方法" class="headerlink" title="抽象方法"></a>抽象方法</h4><p>使用 <strong>abstract</strong> 关键字修饰的方法叫做抽象方法，抽象方法仅有声明没有方法体。如下代码：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public abstract void m();</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">public abstract void m();
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h4 id="抽象类的特性"><a href="#抽象类的特性" class="headerlink" title="抽象类的特性"></a>抽象类的特性</h4><ul>
 <li>抽象类不能被初始化</li>
@@ -491,29 +538,107 @@
 </ul>
 <h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><p>接口（interface）是抽象类的延伸，它允许一个类可以实现多个接口，弥补了抽象类不能多继承的缺陷，接口是对类的描述，使用 <strong>interface</strong> 关键字来声明。</p>
 <h4 id="接口使用"><a href="#接口使用" class="headerlink" title="接口使用"></a>接口使用</h4><p>示例代码，如下：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">interface IAnimal {</span><br><span class="line">    void run();</span><br><span class="line">}</span><br><span class="line">class AnimalImpl implements IAnimal {</span><br><span class="line">    public static void main(String[] args) {</span><br><span class="line">        IAnimal animal = new AnimalImpl();</span><br><span class="line">        animal.run();</span><br><span class="line">    }</span><br><span class="line">    @Override</span><br><span class="line">    public void run() {</span><br><span class="line">        System.out.println("AnimalImpl Run.");</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">interface IAnimal {
+    void run();
+}
+class AnimalImpl implements IAnimal {
+    public static void main(String[] args) {
+        IAnimal animal = new AnimalImpl();
+        animal.run();
+    }
+    @Override
+    public void run() {
+        System.out.println("AnimalImpl Run.");
+    }
+}
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="Java-8-中接口的改动"><a href="#Java-8-中接口的改动" class="headerlink" title="Java 8 中接口的改动"></a>Java 8 中接口的改动</h4><p><strong>1）接口中增加了 default 方法和 static 方法，可以有方法体</strong><br>示例代码，如下：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">interface IAnimal {</span><br><span class="line">    static void printSex() {</span><br><span class="line">        System.out.println("Male Dog");</span><br><span class="line">    }</span><br><span class="line">    default void printAge() {</span><br><span class="line">        System.out.println("18");</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">class AnimalImpl implements IAnimal {</span><br><span class="line">    public static void main(String[] args) {</span><br><span class="line">        IAnimal.printSex();</span><br><span class="line">        IAnimal animal = new AnimalImpl();</span><br><span class="line">        animal.printAge();</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">interface IAnimal {
+    static void printSex() {
+        System.out.println("Male Dog");
+    }
+    default void printAge() {
+        System.out.println("18");
+    }
+}
+class AnimalImpl implements IAnimal {
+    public static void main(String[] args) {
+        IAnimal.printSex();
+        IAnimal animal = new AnimalImpl();
+        animal.printAge();
+  }
+}
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>注意</strong>：static 方法属于接口方法，可以直接使用；default 属于实例方法，必须先创建实例。</p>
 <p><strong>2）接口中的静态变量会被继承</strong><br>示例代码，如下：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">interface IAnimal {</span><br><span class="line">    static String animalName = "Animal Name";</span><br><span class="line">    static void printSex() {</span><br><span class="line">        System.out.println("Male Dog");</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">class AnimalImpl implements IAnimal {</span><br><span class="line">    public static void main(String[] args) {</span><br><span class="line">        System.out.println(animalName);</span><br><span class="line">        IAnimal.printSex();</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">interface IAnimal {
+    static String animalName = "Animal Name";
+    static void printSex() {
+        System.out.println("Male Dog");
+    }
+}
+class AnimalImpl implements IAnimal {
+    public static void main(String[] args) {
+        System.out.println(animalName);
+        IAnimal.printSex();
+    }
+}
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>注意</strong>：静态变量会被继承，静态方法不会被继承。</p>
 <p><strong>3）新增函数式接口</strong></p>
 <p>函数式接口（Function Interface）是一个特殊的接口，使用 <code>@FunctionInterface</code> 注解声明，定义这种接口可以使用 <strong>Lambda</strong> 表达式直接调用。<br>示例代码，如下：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@FunctionalInterface</span><br><span class="line">interface IAnimal {</span><br><span class="line">    static String animalName = "Animal Name";</span><br><span class="line">    static void printSex() {</span><br><span class="line">        System.out.println("Male Dog");</span><br><span class="line">    }</span><br><span class="line">    default void printAge() {</span><br><span class="line">        System.out.println("18");</span><br><span class="line">    }</span><br><span class="line">    void sayHi(String name);</span><br><span class="line">}</span><br><span class="line">class FunctionInterfaceTest {</span><br><span class="line">    public static void main(String[] args) {</span><br><span class="line">        IAnimal animal = name -&gt; System.out.println(name);</span><br><span class="line">        animal.sayHi("WangWang");</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">@FunctionalInterface
+interface IAnimal {
+    static String animalName = "Animal Name";
+    static void printSex() {
+        System.out.println("Male Dog");
+    }
+    default void printAge() {
+        System.out.println("18");
+    }
+    void sayHi(String name);
+}
+class FunctionInterfaceTest {
+    public static void main(String[] args) {
+        IAnimal animal = name -&gt; System.out.println(name);
+        animal.sayHi("WangWang");
+    }
+}
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>注意</strong>：使用 <code>@FunctionInterface</code>&nbsp;声明的函数式接口，抽象方法必须有且仅有一个，但可以包含其他非抽象方法。</p>
 <h3 id="相关面试题"><a href="#相关面试题" class="headerlink" title="相关面试题"></a>相关面试题</h3><h4 id="1-抽象类中能不能包含方法体？"><a href="#1-抽象类中能不能包含方法体？" class="headerlink" title="1. 抽象类中能不能包含方法体？"></a>1. 抽象类中能不能包含方法体？</h4><p>答：抽象类中可以包含方法体。抽象类的构成也可以完全是包含方法体的普通方法，只不过这样并不是抽象类最优的使用方式。</p>
 <p>题目解析：包含了方法体的抽象类示例代码如下：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">abstract class AbstractAnimal {</span><br><span class="line">    public void run() {</span><br><span class="line">        System.out.println("AbstractAnimal Run.");</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">class Animal extends AbstractAnimal {</span><br><span class="line">    public static void main(String[] args) {</span><br><span class="line">        AbstractAnimal animal = new Animal();</span><br><span class="line">        animal.run();</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">abstract class AbstractAnimal {
+    public void run() {
+        System.out.println("AbstractAnimal Run.");
+    }
+}
+class Animal extends AbstractAnimal {
+    public static void main(String[] args) {
+        AbstractAnimal animal = new Animal();
+        animal.run();
+    }
+}
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>以上代码执行的结果是： <code>AbstractAnimal Run.</code></p>
 <h4 id="2-抽象类能不能被实例化？为什么？"><a href="#2-抽象类能不能被实例化？为什么？" class="headerlink" title="2. 抽象类能不能被实例化？为什么？"></a>2. 抽象类能不能被实例化？为什么？</h4><p>答：抽象类不能被实例化，因为抽象类和接口的设计就是用来规定子类行为特征的，就是让其他类来继承，是多态思想的一种设计体现，所以强制规定抽象类不能被实例化。</p>
 <h4 id="3-抽象方法可以被-private-修饰吗？为什么？"><a href="#3-抽象方法可以被-private-修饰吗？为什么？" class="headerlink" title="3. 抽象方法可以被 private 修饰吗？为什么？"></a>3. 抽象方法可以被 private 修饰吗？为什么？</h4><p>答：抽象方法不能使用 private 修饰，因为抽象方法就是要子类继承重写的，如果设置 private 则子类不能重写此抽象方法，这与抽象方法的设计理念相违背，所以不能被 private 修饰。</p>
-<h4 id="4-添加以下哪个选项不会引起编译器报错？"><a href="#4-添加以下哪个选项不会引起编译器报错？" class="headerlink" title="4. 添加以下哪个选项不会引起编译器报错？"></a>4. 添加以下哪个选项不会引起编译器报错？</h4><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">abstract class AbstractAnimal {</span><br><span class="line">    static String animalName = "AbstractAnimal";</span><br><span class="line">      </span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h4 id="4-添加以下哪个选项不会引起编译器报错？"><a href="#4-添加以下哪个选项不会引起编译器报错？" class="headerlink" title="4. 添加以下哪个选项不会引起编译器报错？"></a>4. 添加以下哪个选项不会引起编译器报错？</h4><pre class="line-numbers language-none"><code class="language-none">abstract class AbstractAnimal {
+    static String animalName = "AbstractAnimal";
+      
+}
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>A：protected abstract void eat();<br>B： void eat();<br>C：abstract void eat(){};<br>D：animalName += “Cat”;</p>
 <p>答：A</p>
@@ -521,12 +646,34 @@
 <h4 id="5-以下关于抽象类和抽象方法说法正确的是？"><a href="#5-以下关于抽象类和抽象方法说法正确的是？" class="headerlink" title="5. 以下关于抽象类和抽象方法说法正确的是？"></a>5. 以下关于抽象类和抽象方法说法正确的是？</h4><p>A：抽象类中的方法必须全部为抽象方法<br>B： 抽象类中必须包含一个抽象方法<br>C：抽象类中不能包含普通方法<br>D：抽象类中的方法可以全部为普通方法（包含方法体）</p>
 <p>答：D</p>
 <p>题目解析：抽象类中可以没有方法或者全部为普通方法，都是允许的，如下代码所示：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">abstract class AbstractAnimal {</span><br><span class="line">    public void run() {</span><br><span class="line">        System.out.println("AbstractAnimal Run.");</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">class Animal extends AbstractAnimal {</span><br><span class="line">    public static void main(String[] args) {</span><br><span class="line">        AbstractAnimal animal = new Animal();</span><br><span class="line">        animal.run();</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">abstract class AbstractAnimal {
+    public void run() {
+        System.out.println("AbstractAnimal Run.");
+    }
+}
+class Animal extends AbstractAnimal {
+    public static void main(String[] args) {
+        AbstractAnimal animal = new Animal();
+        animal.run();
+    }
+}
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>程序执行的结果为：AbstractAnimal Run.</p>
 <h4 id="6-接口和普通类有什么关系？"><a href="#6-接口和普通类有什么关系？" class="headerlink" title="6. 接口和普通类有什么关系？"></a>6. 接口和普通类有什么关系？</h4><p>答：在 Java 语言设计中，接口不是类，而是对类的一组需求描述，这些类必须要遵循接口描述的统一格式进行定义。</p>
 <h4 id="7-接口能不能有方法体？"><a href="#7-接口能不能有方法体？" class="headerlink" title="7. 接口能不能有方法体？"></a>7. 接口能不能有方法体？</h4><p>答：JDK 8 之前接口不能有方法体，JDK 8 之后新增了 static 方法和 default 方法，可以包含方法体。</p>
-<h4 id="8-执行以下代码会输出什么结果？"><a href="#8-执行以下代码会输出什么结果？" class="headerlink" title="8. 执行以下代码会输出什么结果？"></a>8. 执行以下代码会输出什么结果？</h4><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">interface IAnimal {</span><br><span class="line">    static String animalName = "Animal Name";</span><br><span class="line">}</span><br><span class="line">class AnimalImpl implements IAnimal {</span><br><span class="line">    static String animalName = new String("Animal Name");</span><br><span class="line">    public static void main(String[] args) {</span><br><span class="line">        System.out.println(IAnimal.animalName == animalName);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h4 id="8-执行以下代码会输出什么结果？"><a href="#8-执行以下代码会输出什么结果？" class="headerlink" title="8. 执行以下代码会输出什么结果？"></a>8. 执行以下代码会输出什么结果？</h4><pre class="line-numbers language-none"><code class="language-none">interface IAnimal {
+    static String animalName = "Animal Name";
+}
+class AnimalImpl implements IAnimal {
+    static String animalName = new String("Animal Name");
+    public static void main(String[] args) {
+        System.out.println(IAnimal.animalName == animalName);
+    }
+}
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>答：执行的结果为 false。</p>
 <p>题目解析：子类使用 new String… 重新创建了变量 animalName，又因为使用 == 进行内存地址比较，所以结果就是 false。</p>
@@ -892,6 +1039,9 @@
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
 
 <!-- 代码语言 -->
 
@@ -1014,7 +1164,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">47.7k</span>
+                        class="white-color">47.8k</span>
             
             
             
@@ -1359,7 +1509,7 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"left","width":150,"height":320},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script>
+
         <style>
             [bg-lazy] {
                 background-image: none !important;
@@ -1372,6 +1522,6 @@ $(function () {
                 preloadRatio: 1,
                 processImages: null,
             };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,c=(r.imageLazyLoadSetting.preloadRatio,n());function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=n());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight+240||document.documentElement.clientHeight+240)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),r.addEventListener("resize",a),r.addEventListener("orientationchange",a)}(this);</script></body>
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,c=(r.imageLazyLoadSetting.preloadRatio,n());function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=n());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight+240||document.documentElement.clientHeight+240)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),r.addEventListener("resize",a),r.addEventListener("orientationchange",a)}(this);</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"left","width":150,"height":320},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 
 </html>
