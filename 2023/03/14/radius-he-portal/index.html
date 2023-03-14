@@ -4,9 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="MyBatis核心组件面试题, hexo,华紫樱绯,node,博客">
-    <meta name="description" content="MyBatis 核心组件 + 面试题[toc]
-MyBatis&amp;nbsp;介绍MyBatis 是一款优秀的 ORM（Object Relational Mapping，对象关系映射）框架，它可以通过对象和数据库之间的映射，将程序中的对象自动">
+    <meta name="keywords" content="Radius和Portal, hexo,华紫樱绯,node,博客">
+    <meta name="description" content="一.RADIUS 基本概念Radius 与 Radius+：​	Radius：目前互联网应用中比较流行的用户验证、授权、计费协议。RFC2865/2866/2869定义了标准radius协议的所有规范。
+​	Radius+：各通信设备厂家分">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +19,7 @@ MyBatis&amp;nbsp;介绍MyBatis 是一款优秀的 ORM（Object Relational Mappin
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>MyBatis核心组件面试题 | 华紫樱绯</title>
+    <title>Radius和Portal | 华紫樱绯</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -380,12 +380,12 @@ MyBatis&amp;nbsp;介绍MyBatis 是一款优秀的 ORM（Object Relational Mappin
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">MyBatis核心组件面试题</h1>
+                    <h1 class="description center-align post-title">Radius和Portal</h1>
                 </div>
             </div>
         </div>
@@ -409,16 +409,16 @@ MyBatis&amp;nbsp;介绍MyBatis 是一款优秀的 ORM（Object Relational Mappin
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Mybatis/">
-                                <span class="chip bg-color">Mybatis</span>
+                            <a href="/tags/radius/">
+                                <span class="chip bg-color">radius</span>
                             </a>
                         
-                            <a href="/tags/%E9%9D%A2%E8%AF%95/">
-                                <span class="chip bg-color">面试</span>
+                            <a href="/tags/portal/">
+                                <span class="chip bg-color">portal</span>
                             </a>
                         
-                            <a href="/tags/Mapper/">
-                                <span class="chip bg-color">Mapper</span>
+                            <a href="/tags/%E8%AE%A4%E8%AF%81%E8%AE%A1%E8%B4%B9/">
+                                <span class="chip bg-color">认证计费</span>
                             </a>
                         
                     </div>
@@ -429,8 +429,8 @@ MyBatis&amp;nbsp;介绍MyBatis 是一款优秀的 ORM（Object Relational Mappin
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E9%9D%A2%E8%AF%95%E4%B8%93%E9%A2%98/" class="post-category">
-                                面试专题
+                            <a href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/" class="post-category">
+                                系统运维
                             </a>
                         
                     </div>
@@ -442,28 +442,28 @@ MyBatis&amp;nbsp;介绍MyBatis 是一款优秀的 ORM（Object Relational Mappin
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-03-03
+                    2023-03-14
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-03-03
+                    2023-03-14
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2k
+                    2.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    8 分
                 </div>
                 
 
@@ -486,248 +486,350 @@ MyBatis&amp;nbsp;介绍MyBatis 是一款优秀的 ORM（Object Relational Mappin
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="MyBatis-核心组件-面试题"><a href="#MyBatis-核心组件-面试题" class="headerlink" title="MyBatis 核心组件 + 面试题"></a>MyBatis 核心组件 + 面试题</h2><p>[toc]</p>
-<h3 id="MyBatis-介绍"><a href="#MyBatis-介绍" class="headerlink" title="MyBatis&nbsp;介绍"></a>MyBatis&nbsp;介绍</h3><p>MyBatis 是一款优秀的 ORM（Object Relational Mapping，对象关系映射）框架，它可以通过对象和数据库之间的映射，将程序中的对象自动存储到数据库中。它是 Apache 提供的一个开源项目，之前的名字叫做 iBatis，2010 年迁移到了 Google Code，并且将名字改为我们现在所熟知的 MyBatis，又于 2013 年 11 月迁移到了 Github。</p>
-<p>MyBatis 提供了普通 SQL 查询、事务、存储过程等功能，它的优缺点如下。</p>
-<p><strong>优点</strong>：</p>
-<ul>
-<li>相比于 JDBC 需要编写的代码更少</li>
-<li>使用灵活，支持动态 SQL</li>
-<li>提供映射标签，支持对象与数据库的字段关系映射</li>
+                <h1 id="一-RADIUS-基本概念"><a href="#一-RADIUS-基本概念" class="headerlink" title="一.RADIUS 基本概念"></a>一.RADIUS 基本概念</h1><h2 id="Radius-与-Radius-："><a href="#Radius-与-Radius-：" class="headerlink" title="Radius 与 Radius+："></a>Radius 与 Radius+：</h2><p>​	Radius：目前互联网应用中比较流行的用户验证、授权、计费协议。RFC2865/2866/2869定义了标准radius协议的所有规范。</p>
+<p>​	Radius+：各通信设备厂家分别对应于原标准radius协议所未定义到的新应用自行开发定义了一套扩展的radius协议报文和属性，成为radius+协议。</p>
+<p>​	采用 UDP 封包为传输协议，标准认证 port 为1812、计费 port 为1813，原来旧式 RADIUS 标准的传输 port 为1645与1646。（现已经基本不用）</p>
+<h2 id="基-本-概-念"><a href="#基-本-概-念" class="headerlink" title="基 本 概 念"></a>基 本 概 念</h2><pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">AAA Authentication、Authorization、Accounting
+验证、授权、记费
+PAP Password Authentication Protocol
+口令验证协议
+CHAP Challenge-Handshake Authentication Protocol
+盘问握手验证协议
+NAS Network Access Server
+网络接入服务器
+BAS(Broadband Access Server）
+宽带接入服务器
+BRAS(Broadband Remote Access Server) 
+宽带远程接入服务器（新一代接入服务器的称呼）
+RADIUS Remote Authentication Dial In User Service
+远程验证拨入用户服务（拨入用户的远程验证服务）
+TCP Transmission Control Protocol
+传输控制协议
+UDP User Datagram Protocol
+用户数据报协议<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="Radius-常用加密方式"><a href="#Radius-常用加密方式" class="headerlink" title="Radius 常用加密方式"></a>Radius 常用加密方式</h2><ul>
+<li><p>PAP (Password Authentication Protocol) </p>
+<p>直接送出密码明文到远程进行验证</p>
+<p>实作容易，但不安全 </p>
+</li>
+<li><p>CHAP (Challenge  Handshake Authentication Protocol) </p>
+<p> 密码经过加密后送到远程进行验证 </p>
+<p>实作容易，但账号系统必须支持明码密码 </p>
+<p>比 PAP 安全一些 </p>
+</li>
+<li><p>EAP (Extensible Authentication Protocol) </p>
+<p>支持多种验证方式的认证协议 </p>
+<p>支持较高等级的加密方式 </p>
+<p>用户必须使用特殊的认证客户端软件 </p>
+<p>相关网络硬件必须支持  EAP </p>
+<p>使用上比较不方便，但是安全性高</p>
+</li>
 </ul>
-<p><strong>缺点</strong>：</p>
-<ul>
-<li>SQL 语句依赖于数据库，数据库移植性差</li>
-<li>SQL 语句编写工作量大，尤其在表、字段比较多的情况下</li>
-</ul>
-<p>总体来说，MyBatis 是一个非常优秀和灵活的数据持久化框架，适用于需求多变的互联网项目，也是当前主流的 ORM 框架。</p>
-<h4 id="MyBatis-重要组件"><a href="#MyBatis-重要组件" class="headerlink" title="MyBatis&nbsp;重要组件"></a>MyBatis&nbsp;重要组件</h4><p>MyBatis&nbsp;中的重要组件如下：</p>
-<ul>
-<li>Mapper 配置：用于组织具体的查询业务和映射数据库的字段关系，可以使用 XML 格式或 Java 注解格式来实现；</li>
-<li>Mapper 接口：数据操作接口也就是通常说的 DAO 接口，要和 Mapper 配置文件中的方法一一对应；</li>
-<li>Executor：MyBatis 中所有的 Mapper 语句的执行都是通过 Executor 执行的；</li>
-<li>SqlSession：类似于 JDBC 中的 Connection，可以用 SqlSession 实例来直接执行被映射的 SQL 语句；</li>
-<li>SqlSessionFactory：SqlSessionFactory 是创建 SqlSession 的工厂，可以通过 SqlSession openSession() 方法创建 SqlSession 对象。</li>
-</ul>
-<h4 id="MyBatis-执行流程"><a href="#MyBatis-执行流程" class="headerlink" title="MyBatis 执行流程"></a>MyBatis 执行流程</h4><p>MyBatis 完整执行流程如下图所示：</p>
-<p><img src="/medias/images/imageloading3.gif" data-original="https://images.gitbook.cn/4070e4c0-da75-11e9-b7a4-5f21fd84c626"></p>
-<p>MyBatis 执行流程说明：</p>
-<ol>
-<li>首先加载 Mapper 配置的 SQL 映射文件，或者是注解的相关 SQL 内容。</li>
-<li>创建会话工厂，MyBatis 通过读取配置文件的信息来构造出会话工厂（SqlSessionFactory）。</li>
-<li>创建会话，根据会话工厂，MyBatis 就可以通过它来创建会话对象（SqlSession），会话对象是一个接口，该接口中包含了对数据库操作的增、删、改、查方法。</li>
-<li>创建执行器，因为会话对象本身不能直接操作数据库，所以它使用了一个叫做数据库执行器（Executor）的接口来帮它执行操作。</li>
-<li>封装 SQL 对象，在这一步，执行器将待处理的 SQL 信息封装到一个对象中（MappedStatement），该对象包括 SQL 语句、输入参数映射信息（Java 简单类型、HashMap 或 POJO）和输出结果映射信息（Java 简单类型、HashMap 或 POJO）。</li>
-<li>操作数据库，拥有了执行器和 SQL 信息封装对象就使用它们访问数据库了，最后再返回操作结果，结束流程。</li>
-</ol>
-<h3 id="MyBatis-XML-版"><a href="#MyBatis-XML-版" class="headerlink" title="MyBatis&nbsp;XML&nbsp;版"></a>MyBatis&nbsp;XML&nbsp;版</h3><p>MyBatis&nbsp;使用分为两个版本：XML&nbsp;版和&nbsp;Java&nbsp;注解版。接下来我们使用 Spring Boot 结合 MyBatis 的 XML 版，来实现对数据库的基本操作，步骤如下。</p>
-<h4 id="1）创建数据表"><a href="#1）创建数据表" class="headerlink" title="1）创建数据表"></a>1）创建数据表</h4><pre class="line-numbers language-none"><code class="language-none">drop table if exists `t_user`;
-create table `t_user` (
-  `id` bigint(20) not null auto_increment comment '主键id',
-  `username` varchar(32) default null comment '用户名',
-  `password` varchar(32) default null comment '密码',
-  `nick_name` varchar(32) default null,
-  primary key (`id`)
-) engine=innodb auto_increment=1 default charset=utf8;
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="2）添加依赖"><a href="#2）添加依赖" class="headerlink" title="2）添加依赖"></a>2）添加依赖</h4><p>在项目添加对 MyBatis 和 MySQL 支持的依赖包，在&nbsp;pom.xml&nbsp;文件中添加如下代码：</p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;dependency&gt;
-    &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;
-    &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;
-    &lt;version&gt;2.1.0&lt;/version&gt;
-&lt;/dependency&gt;
-
-&lt;dependency&gt;
-    &lt;groupId&gt;mysql&lt;/groupId&gt;
-    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
-    &lt;version&gt;8.0.16&lt;/version&gt;
-&lt;/dependency&gt;
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>mybatis-spring-boot-starter 是 MyBatis 官方帮助我们快速集成 Spring Boot 提供的一个组件包，mybatis-spring-boot-starter 2.1.0 对应 MyBatis 的版本是 3.5.2。</p>
-<h4 id="3）增加配置文件"><a href="#3）增加配置文件" class="headerlink" title="3）增加配置文件"></a>3）增加配置文件</h4><p>在&nbsp;application.yml&nbsp;文件中添加以下内容：</p>
-<pre class="line-numbers language-none"><code class="language-none">spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/learndb?serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true
-    username: root
-    password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
-mybatis:
-  config-location: classpath:mybatis/mybatis-config.xml
-  mapper-locations: classpath:mybatis/mapper/*.xml
-  type-aliases-package: com.interview.mybatislearning.model
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>其中：</p>
-<ul>
-<li>mybatis.config-location：配置 MyBatis 基础属性；</li>
-<li>mybatis.mapper-locations：配置 Mapper 对应的 XML 文件路径；</li>
-<li>mybatis.type-aliases-package：配置项目中实体类包路径。</li>
-</ul>
-<p>注：如果配置文件使用的是&nbsp;application.properties，配置内容是相同的，只是内容格式不同。</p>
-<h4 id="4）创建实体类"><a href="#4）创建实体类" class="headerlink" title="4）创建实体类"></a>4）创建实体类</h4><pre class="line-numbers language-none"><code class="language-none">public class UserEntity implements Serializable {
-    private static final long serialVersionUID = -5980266333958177104L;
-    private Integer id;
-    private String userName;
-    private String passWord;
-    private String nickName;
-    public UserEntity(String userName, String passWord, String nickName) {
-        this.userName = userName;
-        this.passWord = passWord;
-        this.nickName = nickName;
-    }
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    public String getUserName() {
-        return userName;
-    }
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-    public String getPassWord() {
-        return passWord;
-    }
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
-    }
-    public String getNickName() {
-        return nickName;
-    }
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
-}
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="5）创建-XML-文件"><a href="#5）创建-XML-文件" class="headerlink" title="5）创建&nbsp;XML&nbsp;文件"></a>5）创建&nbsp;XML&nbsp;文件</h4><p><strong>mybatis-config.xml</strong>（基础配置文件）：</p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
-&lt;!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;
-&lt;configuration&gt;
-    &lt;typeAliases&gt;
-        &lt;typeAlias alias="Integer" type="java.lang.Integer"/&gt;
-        &lt;typeAlias alias="Long" type="java.lang.Long"/&gt;
-        &lt;typeAlias alias="HashMap" type="java.util.HashMap"/&gt;
-        &lt;typeAlias alias="LinkedHashMap" type="java.util.LinkedHashMap"/&gt;
-        &lt;typeAlias alias="ArrayList" type="java.util.ArrayList"/&gt;
-        &lt;typeAlias alias="LinkedList" type="java.util.LinkedList"/&gt;
-    &lt;/typeAliases&gt;
-&lt;/configuration&gt;
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>mybatis-config.xml&nbsp;主要是为常用的数据类型设置别名，用于减少类完全限定名的长度，比如：<code>resultType="Integer"</code>&nbsp;完整示例代码如下：</p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;select id="getAllCount" resultType="Integer"&gt;
-    select
-    count(*)
-    from t_user
-&lt;/select&gt;
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>UserMapper.xml</strong>（业务配置文件）：</p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
-&lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" &gt;
-&lt;mapper namespace="com.interview.mybatislearning.mapper.UserMapper"&gt;
-    &lt;resultMap id="BaseResultMap" type="com.interview.mybatislearning.model.UserEntity" &gt;
-        &lt;id column="id" property="id" jdbcType="BIGINT" /&gt;
-        &lt;result column="username" property="userName" jdbcType="VARCHAR" /&gt;
-        &lt;result column="password" property="passWord" jdbcType="VARCHAR" /&gt;
-        &lt;result column="nick_name" property="nickName" jdbcType="VARCHAR" /&gt;
-    &lt;/resultMap&gt;
-    &lt;sql id="Base_Column_List" &gt;
-        id, username, password, nick_name
-    &lt;/sql&gt;
-    &lt;sql id="Base_Where_List"&gt;
-        &lt;if test="userName != null  and userName != ''"&gt;
-            and userName = #{userName}
-        &lt;/if&gt;
-    &lt;/sql&gt;
-    &lt;select id="getAll" resultMap="BaseResultMap"  &gt;
-        SELECT
-        &lt;include refid="Base_Column_List" /&gt;
-        FROM t_user
-    &lt;/select&gt;
-    &lt;select id="getOne" parameterType="Long" resultMap="BaseResultMap" &gt;
-        SELECT
-        &lt;include refid="Base_Column_List" /&gt;
-        FROM t_user
-        WHERE id = #{id}
-    &lt;/select&gt;
-    &lt;insert id="insert" parameterType="com.interview.mybatislearning.model.UserEntity" &gt;
-       INSERT INTO
-               t_user
-               (username,password,nick_name)
-           VALUES
-               (#{userName}, #{passWord}, #{nickName})
-    &lt;/insert&gt;
-    &lt;update id="update" parameterType="com.interview.mybatislearning.model.UserEntity" &gt;
-        UPDATE
-        t_user
-        SET
-        &lt;if test="userName != null"&gt;username = #{userName},&lt;/if&gt;
-        &lt;if test="passWord != null"&gt;password = #{passWord},&lt;/if&gt;
-        nick_name = #{nickName}
-        WHERE
-        id = #{id}
-    &lt;/update&gt;
-    &lt;delete id="delete" parameterType="Long" &gt;
-       DELETE FROM
-                t_user
-       WHERE
-                id =#{id}
-    &lt;/delete&gt;
-&lt;/mapper&gt;
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>以上配置我们增加了增删改查等基础方法。</p>
-<h4 id="6）增加-Mapper-文件"><a href="#6）增加-Mapper-文件" class="headerlink" title="6）增加&nbsp;Mapper&nbsp;文件"></a>6）增加&nbsp;Mapper&nbsp;文件</h4><p>此步骤我们需要创建一个与&nbsp;XML&nbsp;对应的业务&nbsp;Mapper&nbsp;接口，代码如下：</p>
-<pre class="line-numbers language-none"><code class="language-none">public interface UserMapper {
-    List&lt;UserEntity&gt; getAll();
-    UserEntity getOne(Long id);
-    void insert(UserEntity user);
-    void update(UserEntity user);
-    void delete(Long id);
-}
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="7）添加-Mapper-包扫描"><a href="#7）添加-Mapper-包扫描" class="headerlink" title="7）添加 Mapper 包扫描"></a>7）添加 Mapper 包扫描</h4><p>在启动类中添加 @MapperScan，设置 Spring Boot 启动的时候会自动加载包路径下的 Mapper。</p>
-<pre class="line-numbers language-none"><code class="language-none">@SpringBootApplication
-@MapperScan("com.interview.mybatislearning.mapper")
-public class MyBatisLearningApplication {
-   public static void main(String[] args) {
-       SpringApplication.run(MyBatisLearningApplication.class, args);
-   }
-}
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="8）编写测试代码"><a href="#8）编写测试代码" class="headerlink" title="8）编写测试代码"></a>8）编写测试代码</h4><p>经过以上步骤之后，整个&nbsp;MyBatis&nbsp;的集成就算完成了。接下来我们写一个单元测试，验证一下。</p>
-<pre class="line-numbers language-none"><code class="language-none">@RunWith(SpringRunner.class)
-@SpringBootTest
-public class MybatislearningApplicationTests {
-    @Resource
-    private UserMapper userMapper;
-    @Test
-    public void testInsert() {
-        userMapper.insert(new UserEntity("laowang", "123456", "老王"));
-        Assert.assertEquals(1, userMapper.getAll().size());
-    }
-}
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>通过本文我们知道 MyBatis 是一个优秀和灵活的数据持久化框架，MyBatis 包含 Mapper 配置、Mapper 接口、Executor、SqlSession、SqlSessionFactory 等几个重要的组件，知道了 MyBatis 基本流程：MyBatis 首先加载 Mapper 配置和 SQL 映射文件，通过创建会话工厂得到 SqlSession 对象，再执行 SQL 语句并返回操作信息。我们也使用 XML 的方式，实现了 MyBatis 对数据库的基础操作。</p>
+<h2 id="RADIUS-角色"><a href="#RADIUS-角色" class="headerlink" title="RADIUS 角色"></a>RADIUS 角色</h2><p><img src="/medias/images/imageloading3.gif" data-original="https://cdn.jsdelivr.net/gh/hasaki99/Computer-Graduation-Design-Notes@main/images/image-20230314161956005.png" alt="Radius角色"></p>
+<h2 id="NAS认证拓扑图"><a href="#NAS认证拓扑图" class="headerlink" title="NAS认证拓扑图"></a>NAS认证拓扑图</h2><p><img src="/medias/images/imageloading3.gif" data-original="https://cdn.jsdelivr.net/gh/hasaki99/Computer-Graduation-Design-Notes@main/images/image-20230314162058832.png" alt="PPPOE拨号流程"></p>
+<p>​	</p>
+<h2 id="RADIUS协议属性"><a href="#RADIUS协议属性" class="headerlink" title="RADIUS协议属性"></a><strong>RADIUS</strong>协议属性</h2><table>
+<thead>
+<tr>
+<th align="left">属性值</th>
+<th>属性名称</th>
+<th align="left">意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td>User-Name</td>
+<td align="left">用户名</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td>User-Password</td>
+<td align="left">用户密码</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td>Chap-Password</td>
+<td align="left">Chap认证方式中的用户密码</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td>Nas-IP-Address</td>
+<td align="left">Nas的ip地址</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td>Nas-Port</td>
+<td align="left">用户接入端口号</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td>Service-Type</td>
+<td align="left">服务类型</td>
+</tr>
+<tr>
+<td align="left">7</td>
+<td>Framed-Protocol</td>
+<td align="left">协议类型</td>
+</tr>
+<tr>
+<td align="left">8</td>
+<td>Framed-IP-Address</td>
+<td align="left">为用户提供的IP地址</td>
+</tr>
+<tr>
+<td align="left">9</td>
+<td>Framed-IP-NetMask</td>
+<td align="left">地址掩码</td>
+</tr>
+<tr>
+<td align="left">10</td>
+<td>Framed-Routing</td>
+<td align="left">为路由器用户设置的路由方式</td>
+</tr>
+<tr>
+<td align="left">11</td>
+<td>Filter-Id</td>
+<td align="left">过滤表的名称</td>
+</tr>
+<tr>
+<td align="left">12</td>
+<td>Framed-MTU</td>
+<td align="left">为用户配置的最大传输单元</td>
+</tr>
+<tr>
+<td align="left">13</td>
+<td>Framed-Compression</td>
+<td align="left">该连接使用压缩协议</td>
+</tr>
+<tr>
+<td align="left">14</td>
+<td>Login-IP-Host</td>
+<td align="left">对login用户提供的可连接主机的ip地址</td>
+</tr>
+<tr>
+<td align="left">15</td>
+<td>Login-Service</td>
+<td align="left">对login用户可提供的服务</td>
+</tr>
+<tr>
+<td align="left">16</td>
+<td>Login-TCP-Port</td>
+<td align="left">TCP服务端口</td>
+</tr>
+<tr>
+<td align="left">17</td>
+<td>Reply-Message</td>
+<td align="left">认证服务器返回用户的信息</td>
+</tr>
+<tr>
+<td align="left">18</td>
+<td>State</td>
+<td align="left">认证服务器发送challenge包时传送的需在接下来的认证报文中回应的字符串（与Acess-Challenge相关的属性）</td>
+</tr>
+<tr>
+<td align="left">19</td>
+<td>Class</td>
+<td align="left">认证通过时认证服务器返回的字符串信息，要求在该用户的计费报文中送给计费服务器</td>
+</tr>
+<tr>
+<td align="left">20</td>
+<td>Vendor-Specific</td>
+<td align="left">可扩展属性</td>
+</tr>
+<tr>
+<td align="left">21</td>
+<td>Session-Timeout</td>
+<td align="left">在认证通过报文或Challenge报文中，通知NAS该用户可用的会话时长 （时长预付费）</td>
+</tr>
+<tr>
+<td align="left">22</td>
+<td>Idle-Timeout</td>
+<td align="left">允许用户空闲在线的最大时长</td>
+</tr>
+<tr>
+<td align="left">23</td>
+<td>NAS-Identifier</td>
+<td align="left">标识NAS的字符串</td>
+</tr>
+<tr>
+<td align="left">24</td>
+<td>Proxy-State</td>
+<td align="left">NAS通过代理服务器转发认证报文时服务器添加在报文中的属性</td>
+</tr>
+<tr>
+<td align="left">25</td>
+<td>Chap-Challenge</td>
+<td align="left">可以代替认证字字段传送</td>
+</tr>
+<tr>
+<td align="left">26</td>
+<td>Nas-Port-Type</td>
+<td align="left">接入端口的类型</td>
+</tr>
+<tr>
+<td align="left">27</td>
+<td>Port-Limit</td>
+<td align="left">服务器限制NAS为用户开放的端口数</td>
+</tr>
+<tr>
+<td align="left">28</td>
+<td>Acct-Status-Type</td>
+<td align="left">计费请求报文的类型</td>
+</tr>
+<tr>
+<td align="left">29</td>
+<td>Acct-Delay-Time</td>
+<td align="left">Radius客户端发送计费报文耗费的时间</td>
+</tr>
+<tr>
+<td align="left">30</td>
+<td>Acct-Input-Octets</td>
+<td align="left">输入字节数</td>
+</tr>
+<tr>
+<td align="left">32</td>
+<td>Acct-Output-Octets</td>
+<td align="left">输出字节数</td>
+</tr>
+<tr>
+<td align="left">33</td>
+<td>Acct-Session-Id</td>
+<td align="left">计费会话标识</td>
+</tr>
+<tr>
+<td align="left">34</td>
+<td>Acct-Authentic</td>
+<td align="left">在计费包中标识用户认证通过的方式</td>
+</tr>
+<tr>
+<td align="left">35</td>
+<td>Acct-Session-Time</td>
+<td align="left">用户在线时长</td>
+</tr>
+<tr>
+<td align="left">36</td>
+<td>Acct-Input-Packets</td>
+<td align="left">输入包数</td>
+</tr>
+<tr>
+<td align="left">37</td>
+<td>Acct-Output-Packets</td>
+<td align="left">输出包数</td>
+</tr>
+<tr>
+<td align="left">38</td>
+<td>Acct-Terminate-Case</td>
+<td align="left">用户下线原因</td>
+</tr>
+<tr>
+<td align="left">39</td>
+<td>Acct-Multi_Session-Id</td>
+<td align="left">相关计费会话标识</td>
+</tr>
+<tr>
+<td align="left">40</td>
+<td>Acct-Link-Count</td>
+<td align="left">生成计费记录时多连接会话的会话个数</td>
+</tr>
+</tbody></table>
+<h2 id="查看radius报文"><a href="#查看radius报文" class="headerlink" title="查看radius报文"></a>查看radius报文</h2><p>使radius认证服务工作在调试模式<br>1、使用root 用户登录<br>2、/srun3/radius/sbin/radius –x<br>     -x参数表示radius认证服务工作在调试模式，所有的报文用户均可以看到<br>3、系统默认不采用调试模式（调试模式是单线程工作，性能会收到影响），工作在后台模式下</p>
+<h2 id="Radius基本报文种类"><a href="#Radius基本报文种类" class="headerlink" title="Radius基本报文种类"></a>Radius基本报文种类</h2><table>
+<thead>
+<tr>
+<th><strong>code</strong></th>
+<th><strong>报文类型</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Access-Request</td>
+<td>认证请求报文</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Access-Accept</td>
+<td>认证响应报文</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Access-Reject</td>
+<td>认证拒绝报文</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Accounting-Request</td>
+<td>计费请求报文</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Accounting-Response</td>
+<td>计费响应报文</td>
+</tr>
+</tbody></table>
+<h3 id="计费报文类型"><a href="#计费报文类型" class="headerlink" title="计费报文类型"></a>计费报文类型</h3><p>Code＝4  Accounting-Request</p>
+<p>Accounting-Request 报文中的三种状态类型（Acct-Status-Type）：</p>
+<p>1）Start（Value=1）：Client开始对指定用户提供服务，记帐开始。</p>
+<p>2）Stop（Value=2）：Client停止对指定用户提供服务，记帐结束。</p>
+<p>3）Interim-Update（Value=3）：中途上报流量信息，实时记帐。</p>
+<p>Code＝5  Accounting-Response</p>
+<h3 id="Radius授权报文"><a href="#Radius授权报文" class="headerlink" title="Radius授权报文"></a>Radius授权报文</h3><p>CoA:（Change of Authorization）是指用户认证成功后，管理员可以通过RADIUS协议来修改在线用户的权限。</p>
+<p>DM:（Disconnect Message）是指用户离线报文，即由RADIUS服务器端主动发起的强迫用户下线的报文。</p>
+<p>CoA和DM 端口一致，一般bras设备都是udp 3799</p>
+<p><img src="/medias/images/imageloading3.gif" data-original="https://cdn.jsdelivr.net/gh/hasaki99/Computer-Graduation-Design-Notes@main/images/image-20230314164406359.png" alt="COA与DM"></p>
+<table>
+<thead>
+<tr>
+<th><strong>报文名称</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CoA-Request</td>
+<td>动态授权请求报文。当管理员需要更改某个在线用户的权限时（例如，管理员不希望用户访问某个网站），可以通过服务器发送一个动态授权请求报文给客户端，使客户端修改在线用户的权限。</td>
+</tr>
+<tr>
+<td>CoA-ACK</td>
+<td>动态授权请求接受报文。如果客户端成功更改了用户的权限，则客户端回应动态授权请求接受报文给服务器。</td>
+</tr>
+<tr>
+<td>CoA-NAK</td>
+<td>动态授权请求拒绝报文。如果客户端未成功更改用户的权限，则客户端回应动态授权请求拒绝报文给服务器。</td>
+</tr>
+<tr>
+<td>DM-Request</td>
+<td>用户离线请求报文。当管理员需要让某个在线的用户下线时，可以通过服务器发送一个用户离线请求报文给客户端，使客户端终结用户的连接。</td>
+</tr>
+<tr>
+<td>DM-ACK</td>
+<td>用户离线请求接受报文。如果客户端已经切断了用户的连接，则客户端回应用户离线请求接受报文给服务器。</td>
+</tr>
+<tr>
+<td>DM-NAK</td>
+<td>用户离线请求拒绝报文。如果客户端无法切断用户的连接，则客户端回应用户离线请求拒绝报文给服务器。</td>
+</tr>
+</tbody></table>
+<h1 id="Portal协议"><a href="#Portal协议" class="headerlink" title="Portal协议"></a>Portal协议</h1><p>规定了采用Portal认证（或Web认证）时，PortalServer和BAS设备之间的报文格式和通信流程，协议支持PAP和CHAP两种认证方式。</p>
+<p>（以下讲解portal v2.0协议,其中portal v2.0协议兼容portal v1.0协议的全部报文类型，同时较portal v1.0新增类型为0x08，0x09，0x0a三种报文类型。对于宽带工程师来说，此过程基本是透明的，因此大部分的内容只需了解即可。）</p>
+<p>​											Portal协议报文格式</p>
+<p><img src="/medias/images/imageloading3.gif" data-original="https://cdn.jsdelivr.net/gh/hasaki99/Computer-Graduation-Design-Notes@main/images/image-20230314164617099.png" alt="Portal协议报文格式"></p>
+<p>Ver字段是协议的版本号，长度为 1 字节，Ver = 0x02表示是portal V2.0的版本。</p>
+<p>Pap/Chap字段定义此用户的认证方式，长度为 1 字节，只对Type值为 0x03 的认证请求报文（ REQ_AUTH ）有意义：</p>
+<p>1）Chap方式认证－－－值为0x00；</p>
+<p>2）Pap 方式认证－－－值为0x01；</p>
+<p>UserIP字段为Portal用户的IP地址，长度为 4 字节，其值由PortalServer根据其获得的IP地址填写，在所有的报文中此字段都要有具体的值；</p>
+<p>​								</p>
+<p><img src="/medias/images/imageloading3.gif" data-original="https://cdn.jsdelivr.net/gh/hasaki99/Computer-Graduation-Design-Notes@main/images/image-20230314165159632.png" alt="标准网络拓扑"></p>
+<h2 id="Portal认证流程"><a href="#Portal认证流程" class="headerlink" title="Portal认证流程"></a>Portal认证流程</h2><p><img src="/medias/images/imageloading3.gif" data-original="https://cdn.jsdelivr.net/gh/hasaki99/Computer-Graduation-Design-Notes@main/images/image-20230314165250708.png" alt="Portal认证流程"></p>
+<p>基本交互步骤如下：</p>
+<p>  (1) 用户输入用户名和口令；</p>
+<p>  (2) BRAS根据获取的用户名和口令，向radius 服务器发送认证请求包（access-request）。</p>
+<p>  (3) radius 服务器将该用户信息与users 数据库信息进行对比分析，如果认证成功，则将用户的权限信息以认证响应包（access-accept）发送给BRAS；如果认证失败，则返回access-reject 响应包。</p>
+<p>  (4) radius 客户端根据接收到的认证结果接入/拒绝用户。如果可以接入用户，则BRAS向radius 服务器发送计费开始请求包（accounting-request），status-type 取值为start；</p>
+<p>  (5) radius 服务器返回计费开始响应包（accounting-response）；</p>
+<p>  (6) BRAS向radius 服务器发送计费停止请求包（accounting-request），status-type 取值为stop；</p>
+<p>  (7) radius 服务器返回计费结束响应包（accounting-response）。</p>
 
                 
             </div>
@@ -754,7 +856,7 @@ public class MybatislearningApplicationTests {
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/hasaki99/hasaki99.github.io/2023/03/03/mybatis-he-xin-zu-jian-mian-shi-ti/">https://github.com/hasaki99/hasaki99.github.io/2023/03/03/mybatis-he-xin-zu-jian-mian-shi-ti/</a>
+                    <a href="https://github.com/hasaki99/hasaki99.github.io/2023/03/14/radius-he-portal/">https://github.com/hasaki99/hasaki99.github.io/2023/03/14/radius-he-portal/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -792,16 +894,16 @@ public class MybatislearningApplicationTests {
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Mybatis/">
-                                    <span class="chip bg-color">Mybatis</span>
+                                <a href="/tags/radius/">
+                                    <span class="chip bg-color">radius</span>
                                 </a>
                             
-                                <a href="/tags/%E9%9D%A2%E8%AF%95/">
-                                    <span class="chip bg-color">面试</span>
+                                <a href="/tags/portal/">
+                                    <span class="chip bg-color">portal</span>
                                 </a>
                             
-                                <a href="/tags/Mapper/">
-                                    <span class="chip bg-color">Mapper</span>
+                                <a href="/tags/%E8%AE%A4%E8%AF%81%E8%AE%A1%E8%B4%B9/">
+                                    <span class="chip bg-color">认证计费</span>
                                 </a>
                             
                         </div>
@@ -884,7 +986,7 @@ public class MybatislearningApplicationTests {
         repo: 'blogComments',
         owner: 'hasaki99',
         admin: ["hasaki99"],
-        id: '2023-03-03T14-25-17',
+        id: '2023-03-14T16-01-45',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -912,9 +1014,68 @@ public class MybatislearningApplicationTests {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2023/03/14/radius-he-portal/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/images/imageloading3.gif" data-original="/medias/featureimages/2.jpg" class="responsive-img" alt="Radius和Portal">
+                        
+                        <span class="card-title">Radius和Portal</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-14
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/" class="post-category">
+                                    系统运维
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/radius/">
+                        <span class="chip bg-color">radius</span>
+                    </a>
+                    
+                    <a href="/tags/portal/">
+                        <span class="chip bg-color">portal</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%AE%A4%E8%AF%81%E8%AE%A1%E8%B4%B9/">
+                        <span class="chip bg-color">认证计费</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2023/03/08/mian-shi-zhi-java-ji-chu/">
                     <div class="card-image">
@@ -932,61 +1093,8 @@ public class MybatislearningApplicationTests {
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-08
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E9%9D%A2%E8%AF%95%E4%B8%93%E9%A2%98/" class="post-category">
-                                    面试专题
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E9%9D%A2%E8%AF%95/">
-                        <span class="chip bg-color">面试</span>
-                    </a>
-                    
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2023/03/03/chou-xiang-lei-he-jie-kou-de-ying-yong-mian-shi-ti/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/images/imageloading3.gif" data-original="/medias/featureimages/7.jpg" class="responsive-img" alt="抽象类和接口的应用面试题">
-                        
-                        <span class="card-title">抽象类和接口的应用面试题</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-03
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-08
                             </span>
                         <span class="publish-author">
                             
@@ -1009,10 +1117,6 @@ public class MybatislearningApplicationTests {
                     
                     <a href="/tags/Java/">
                         <span class="chip bg-color">Java</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%8A%BD%E8%B1%A1%E7%B1%BB/">
-                        <span class="chip bg-color">抽象类</span>
                     </a>
                     
                 </div>
