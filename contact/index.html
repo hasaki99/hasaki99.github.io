@@ -362,7 +362,7 @@
 
 </header>
 
-    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="/css/style.css" /> -->
 <link rel="stylesheet" type="text/css" href="/css/barrager.css">
 <script src="/libs/valine/av-min.js"></script>
 <script src="/libs/jquery/jquery.min.js"></script>
@@ -408,7 +408,7 @@
 
 <script>
     // $('.bg-cover').css('background-image', 'url(/medias/banner/0.jpg)');
-    $('.bg-cover').css('background-image', 'url(/medias/featureimages/11.jpg)')
+    $('.bg-cover').css('background-image', 'url(/medias/featureimages/10.jpg)')
 </script>
 
 
@@ -416,19 +416,7 @@
 </div>
 
 <style>
-    #send{
-        margin-bottom: 10px;
-        width: 49%;
-        background-color: #0ba360;
-    }
-    #clear{
-        margin-bottom: 10px;
-        width: 49%;
-        background-color: #e7c65c;
-    }
-    p{
-        text-align: center;
-    }
+
 </style>
 <main class="content">
     <div id="contact" class="container chip-container">
@@ -444,14 +432,6 @@
             
         <!--其他评论card-->
         <div class="card">
-            
-
-            
-
-            
-
-            
-
             
                 <style>
     .valine-card {
@@ -806,23 +786,23 @@
         })
     });
     // 自定义邮箱审核规则
-    document.body.addEventListener('click', function (e) {
-        if (e.target.classList.contains('vsubmit')) {
-            const email = document.querySelector('input[type=email]');
-            const nick = document.querySelector('input[name=nick]');
-            const reg = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
-            if (!email.value || !nick.value || !reg.test(email.value)) {
-                const str = `<div class="valert text-center"><div class="vtext">请填写正确的昵称和邮箱！</div></div>`;
-                const vmark = document.querySelector('.vmark');
-                vmark.innerHTML = str;
-                vmark.style.display = 'block';
-                setTimeout(function () {
-                    vmark.style.display = 'none';
-                    vmark.innerHTML = '';
-                }, 2500);
-            }
-        }
-    })
+    // document.body.addEventListener('click', function (e) {
+    //     if (e.target.classList.contains('vsubmit')) {
+    //         const email = document.querySelector('input[type=email]');
+    //         const nick = document.querySelector('input[name=nick]');
+    //         const reg = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+    //         if (!email.value || !nick.value || !reg.test(email.value)) {
+    //             const str = `<div class="valert text-center"><div class="vtext">请填写正确的昵称和邮箱！</div></div>`;
+    //             const vmark = document.querySelector('.vmark');
+    //             vmark.innerHTML = str;
+    //             vmark.style.display = 'block';
+    //             setTimeout(function () {
+    //                 vmark.style.display = 'none';
+    //                 vmark.innerHTML = '';
+    //             }, 2500);
+    //         }
+    //     }
+    // })
 </script>
 
 <!--酷Q推送-->
@@ -834,13 +814,6 @@
     </a>
   </div>
             
-
-            
-
-            
-
-            
-
         </div>
     </div>
 </main>
@@ -1161,10 +1134,6 @@ $(function () {
         </script>
     
 
-     
-        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
-        <script src="/libs/others/TencentCaptcha.js"></script>
-        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
     
 
     <!-- Baidu Analytics -->

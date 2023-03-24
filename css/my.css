@@ -1,1 +1,9 @@
 /* Here is your custom css styles. */
+@font-face{
+    font-family: 'ceym';
+    src: url('../medias/ceym.woff2');   
+}
+
+body {
+    font-family: 'ceym';
+}
