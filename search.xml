@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>CentOS7同步系统时间为网络时间</title>
+      <link href="/2023/03/28/centos7-tong-bu-xi-tong-shi-jian-wei-wang-luo-shi-jian/"/>
+      <url>/2023/03/28/centos7-tong-bu-xi-tong-shi-jian-wei-wang-luo-shi-jian/</url>
+      
+        <content type="html"><![CDATA[<h1 id="CentOS7同步系统时间为网络时间"><a href="#CentOS7同步系统时间为网络时间" class="headerlink" title="CentOS7同步系统时间为网络时间"></a>CentOS7同步系统时间为网络时间</h1><ul><li>linux系统时间，与本地时间不一致，一般有两种情况</li><li>一是时区设置错误，不是当地使用时区</li><li>二是时间设置错误，未联网校时，或者人为不小心设置错了</li></ul><h3 id="处理时区问题"><a href="#处理时区问题" class="headerlink" title="处理时区问题"></a>处理时区问题</h3><p><strong>date查看时间、时区</strong></p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">date</span>  <span class="token comment">#查看日期时间</span><span class="token function">date</span> <span class="token parameter variable">-R</span>   <span class="token comment">#会把时区一起显示出来</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p><strong>timedatectl查看时间、时区</strong></p><p>也可以使用<code>timedatectl</code>查看和设置时区</p><ul><li>Local time：当前使用的时区的时间，也就是<code>date</code>命令显示的时间</li><li>Universal time：世界时间，也就是0时区时间，世界通用的协调时间</li><li>RTC time：硬件时钟时间，关机也会</li><li>Time zone：现正使用的时区，可以看到上面是<code>CST</code>，中国时区，是对的</li></ul><p><strong>查看localtime</strong></p><ul><li>也可以直接使用<code>ls -l /etc/localtime</code>查看系统当前的时区</li></ul><p><strong>设置时区</strong></p><ul><li>第一种方式，可以通过<code>zoneinfo</code>直接设置</li></ul><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cp</span> /usr/share/zoneinfo/Asia/Shanghai /etc/localtime<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><ul><li>第二种方式，与第一种类似，使用软连接</li></ul><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ln</span> <span class="token parameter variable">-sf</span> /usr/share/zoneinfo/Asia/Shanghai /etc/localtime<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><ul><li>第三种方式，使用<code>timedatectl</code>设置时区</li></ul><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">timedatectl set-timezone Asia/Shanghai<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="处理时间问题"><a href="#处理时间问题" class="headerlink" title="处理时间问题"></a>处理时间问题</h3><ul><li>如果时区已经设置对了，时间显示还是不对，可以手动设置下时间，或者使用互联网校时</li><li>需要安装<code>ntpdate</code>，再校时即可，但是需要在联网情况下进行</li></ul><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">yum <span class="token function">install</span> <span class="token parameter variable">-y</span> ntp ntpdate  <span class="token comment">#下载ntpdate工具</span>ntpdate ntp.aliyun.com   <span class="token comment">#同步阿里云时间</span><span class="token function">date</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><ul><li>如果没有联网，只能直接使用<code>date -s 日期 时间</code>设置了</li><li>时间显示正确后，查看下硬件时间，顺便把硬件时间也改对，防止重启失效</li></ul><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hwclock <span class="token parameter variable">--show</span><span class="token comment"># hwclock代表硬件时间，systohc代表系统时间，即用系统时钟同步硬件时钟</span>hwclock <span class="token parameter variable">--systohc</span>  <span class="token comment">## 或   </span>clock <span class="token parameter variable">--systohc</span>  hwclock <span class="token parameter variable">-w</span><span class="token function">date</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><strong>计划任务</strong></p><p>若有将时间同步写入计划任务的需求，就写入crontab</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost ~<span class="token punctuation">]</span><span class="token comment">#  crontab -e             </span><span class="token number">59</span> <span class="token number">23</span> * * * ntpdate ntp.aliyun.com<span class="token punctuation">[</span>root@localhost ~<span class="token punctuation">]</span><span class="token comment"># crontab -l        #查看计划任务</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 系统运维 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Centos </tag>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Radius和Portal</title>
       <link href="/2023/03/14/radius-he-portal/"/>
       <url>/2023/03/14/radius-he-portal/</url>
