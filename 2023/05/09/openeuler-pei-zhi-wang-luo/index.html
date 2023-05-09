@@ -5,28 +5,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Openeuler配置网络, hexo,华紫樱绯,node,博客">
-    <meta name="description" content="配置网络
+    <meta name="description" content="配置网络配置 IP使用nmcli命令
+ 说明：使用nmcli命令配置的网络配置可以立即生效且系统重启后配置也不会丢失。  
 
-
-配置网络
-配置 IP
-使用nmcli命令
-使用ip命令
-通过ifcfg文件配置网络
-
-
-配置主机名
-简介
-使用hostnamectl配置主机名
-使用nmcli配置主机名
-
-
-配置网络绑定
-使用nmcli
-使用命令行
-
-
-IPv">
+nmcli介绍nmcli是NetworkManager的一个命令行工具，它提供了使用命令行配置由NetworkMa">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -478,7 +460,7 @@ IPv">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    9.8k
+                    9.7k
                 </div>
                 
 
@@ -508,40 +490,7 @@ IPv">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="配置网络"><a href="#配置网络" class="headerlink" title="配置网络"></a>配置网络</h1><!-- TOC -->
-
-<ul>
-<li><a href="#%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C">配置网络</a><ul>
-<li><a href="#%E9%85%8D%E7%BD%AE-ip">配置 IP</a><ul>
-<li><a href="#%E4%BD%BF%E7%94%A8nmcli%E5%91%BD%E4%BB%A4">使用nmcli命令</a></li>
-<li><a href="#%E4%BD%BF%E7%94%A8ip%E5%91%BD%E4%BB%A4">使用ip命令</a></li>
-<li><a href="#%E9%80%9A%E8%BF%87ifcfg%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C">通过ifcfg文件配置网络</a></li>
-</ul>
-</li>
-<li><a href="#%E9%85%8D%E7%BD%AE%E4%B8%BB%E6%9C%BA%E5%90%8D">配置主机名</a><ul>
-<li><a href="#%E7%AE%80%E4%BB%8B">简介</a></li>
-<li><a href="#%E4%BD%BF%E7%94%A8hostnamectl%E9%85%8D%E7%BD%AE%E4%B8%BB%E6%9C%BA%E5%90%8D">使用hostnamectl配置主机名</a></li>
-<li><a href="#%E4%BD%BF%E7%94%A8nmcli%E9%85%8D%E7%BD%AE%E4%B8%BB%E6%9C%BA%E5%90%8D">使用nmcli配置主机名</a></li>
-</ul>
-</li>
-<li><a href="#%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C%E7%BB%91%E5%AE%9A">配置网络绑定</a><ul>
-<li><a href="#%E4%BD%BF%E7%94%A8nmcli">使用nmcli</a></li>
-<li><a href="#%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C">使用命令行</a></li>
-</ul>
-</li>
-<li><a href="#ipv6%E4%BD%BF%E7%94%A8%E5%B7%AE%E5%BC%82%E8%AF%B4%E6%98%8Evs-ipv4">IPv6使用差异说明（vs IPv4）</a><ul>
-<li><a href="#%E7%BA%A6%E6%9D%9F%E9%99%90%E5%88%B6">约束限制</a></li>
-<li><a href="#%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E">配置说明</a></li>
-<li><a href="#faq">FAQ</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<!-- /TOC -->
-
-
-<h2 id="配置-IP"><a href="#配置-IP" class="headerlink" title="配置 IP"></a>配置 IP</h2><h3 id="使用nmcli命令"><a href="#使用nmcli命令" class="headerlink" title="使用nmcli命令"></a>使用nmcli命令</h3><blockquote>
+                <h1 id="配置网络"><a href="#配置网络" class="headerlink" title="配置网络"></a>配置网络</h1><h2 id="配置-IP"><a href="#配置-IP" class="headerlink" title="配置 IP"></a>配置 IP</h2><h3 id="使用nmcli命令"><a href="#使用nmcli命令" class="headerlink" title="使用nmcli命令"></a>使用nmcli命令</h3><blockquote>
 <p><img src="/medias/images/imageloading3.gif" data-original="https://gitee.com/openeuler/docs/raw/stable2-22.09/docs/zh/docs/Administration/public_sys-resources/icon-note.gif"> <strong>说明：</strong><br>使用nmcli命令配置的网络配置可以立即生效且系统重启后配置也不会丢失。  </p>
 </blockquote>
 <h4 id="nmcli介绍"><a href="#nmcli介绍" class="headerlink" title="nmcli介绍"></a>nmcli介绍</h4><p>nmcli是NetworkManager的一个命令行工具，它提供了使用命令行配置由NetworkManager管理网络连接的方法。nmcli命令的基本格式为：</p>
@@ -2239,7 +2188,7 @@ $MainMsgQueueType Direct<span aria-hidden="true" class="line-numbers-rows"><span
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">59.7k</span>
+                        class="white-color">59.6k</span>
             
             
             
@@ -2580,7 +2529,7 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"left","width":150,"height":320},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script>
+
         <style>
             [bg-lazy] {
                 background-image: none !important;
@@ -2593,6 +2542,6 @@ $(function () {
                 preloadRatio: 1,
                 processImages: null,
             };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,c=(r.imageLazyLoadSetting.preloadRatio,n());function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=n());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight+320||document.documentElement.clientHeight+320)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),r.addEventListener("resize",a),r.addEventListener("orientationchange",a)}(this);</script></body>
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,c=(r.imageLazyLoadSetting.preloadRatio,n());function n(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=n());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight+320||document.documentElement.clientHeight+320)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),r.addEventListener("resize",a),r.addEventListener("orientationchange",a)}(this);</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"left","width":150,"height":320},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 
 </html>
